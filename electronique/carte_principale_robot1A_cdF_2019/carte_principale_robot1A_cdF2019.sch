@@ -1,0 +1,1060 @@
+EESchema Schematic File Version 4
+LIBS:carte_principale_robot1A_cdF2019-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+NoConn ~ 4650 3000
+NoConn ~ 4850 3000
+NoConn ~ 5600 3000
+NoConn ~ 5800 3000
+NoConn ~ 6500 3450
+NoConn ~ 6500 4250
+NoConn ~ 4100 3450
+NoConn ~ 4100 4250
+NoConn ~ 4100 4650
+NoConn ~ 6500 4850
+NoConn ~ 6500 5050
+NoConn ~ 6500 5250
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:trou-d3mm-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue U29
+U 1 1 591A6CA7
+P 800 800
+F 0 "U29" H 800 800 60  0000 C CNN
+F 1 "trou-d3mm" H 850 900 60  0000 C CNN
+F 2 "robot_1A:trou_d3mm" H 800 800 60  0001 C CNN
+F 3 "" H 800 800 60  0001 C CNN
+	1    800  800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:trou-d3mm-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue U30
+U 1 1 591A6F1E
+P 1500 800
+F 0 "U30" H 1500 800 60  0000 C CNN
+F 1 "trou-d3mm" H 1550 900 60  0000 C CNN
+F 2 "robot_1A:trou_d3mm" H 1500 800 60  0001 C CNN
+F 3 "" H 1500 800 60  0001 C CNN
+	1    1500 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:Nucleo-64-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue U1
+U 1 1 591611DF
+P 3050 14250
+F 0 "U1" H 2700 13900 60  0000 C CNN
+F 1 "Nucleo-64" H 5300 24250 100 0000 C CNN
+F 2 "robot_1A:Nucleo-64" H 7300 25700 60  0001 C CNN
+F 3 "" H 7300 25700 60  0001 C CNN
+	1    3050 14250
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4100 3850
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:pont_en_H-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue H1
+U 1 1 5ABE0F92
+P 5650 1500
+F 0 "H1" H 5650 1350 60  0000 C CNN
+F 1 "pont_en_H" H 5650 1600 60  0000 C CNN
+F 2 "robot_1A:MC33926-Pont en H" H 5650 1500 60  0001 C CNN
+F 3 "" H 5650 1500 60  0001 C CNN
+	1    5650 1500
+	0    1    1    0   
+$EndComp
+Text GLabel 4900 2250 0    60   Input ~ 0
+GND
+Text GLabel 4400 2150 0    60   Input ~ 0
++3V3_P
+Text GLabel 4900 1950 0    60   Input ~ 0
+RGG
+Text GLabel 4900 2050 0    60   Input ~ 0
+RGD
+Text GLabel 4900 1050 0    60   Input ~ 0
+RDG
+Text GLabel 4900 1150 0    60   Input ~ 0
+RDD
+Text GLabel 6750 4650 2    60   Input ~ 0
+RGD
+Text GLabel 6500 7100 2    60   Input ~ 0
+RDG
+Text GLabel 6500 7000 2    60   Input ~ 0
+RDD
+Text GLabel 4100 5350 0    60   Input ~ 0
+servo
+Text GLabel 6500 7200 2    60   Input ~ 0
+CH_B1
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X04-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P2
+U 1 1 5AC120E7
+P 750 2700
+F 0 "P2" H 750 2950 50  0000 C CNN
+F 1 "Encodeur2" V 850 2700 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical" H 750 2700 50  0001 C CNN
+F 3 "" H 750 2700 50  0000 C CNN
+	1    750  2700
+	-1   0    0    1   
+$EndComp
+Text GLabel 950  2750 2    60   Input ~ 0
+GND
+Text GLabel 950  2550 2    60   Input ~ 0
++5V_P
+Text GLabel 1550 2650 2    60   Input ~ 0
+CH_A2
+Text GLabel 1550 2850 2    60   Input ~ 0
+CH_B2
+Wire Wire Line
+	6500 4650 6750 4650
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X04-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P1
+U 1 1 5AC14F7E
+P 750 2100
+F 0 "P1" H 750 2350 50  0000 C CNN
+F 1 "Encodeur1" V 850 2100 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical" H 750 2100 50  0001 C CNN
+F 3 "" H 750 2100 50  0000 C CNN
+	1    750  2100
+	-1   0    0    1   
+$EndComp
+Text GLabel 950  2150 2    60   Input ~ 0
+GND
+Text GLabel 950  1950 2    60   Input ~ 0
++5V_P
+Text GLabel 1550 2050 2    60   Input ~ 0
+CH_A1
+Text GLabel 1550 2250 2    60   Input ~ 0
+CH_B1
+Text GLabel 4100 7100 0    60   Input ~ 0
+CH_A2
+Text GLabel 4100 4350 0    60   Input ~ 0
+CH_A1
+Text GLabel 4100 7200 0    60   Input ~ 0
+CH_B2
+NoConn ~ 4100 4050
+NoConn ~ 4900 650 
+NoConn ~ 4900 750 
+NoConn ~ 4900 850 
+NoConn ~ 4900 950 
+NoConn ~ 4900 1250
+NoConn ~ 4900 1350
+NoConn ~ 4900 1450
+NoConn ~ 4900 1550
+NoConn ~ 4900 1650
+NoConn ~ 4900 1750
+NoConn ~ 4900 1850
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X03-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P10
+U 1 1 5AC68EDB
+P 10400 3950
+F 0 "P10" H 10400 4150 50  0000 C CNN
+F 1 "servo1" V 10500 3950 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 11650 4300 50  0000 C CNN
+F 3 "" H 10400 3950 50  0000 C CNN
+	1    10400 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X03-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P11
+U 1 1 5AC68FA0
+P 10400 4500
+F 0 "P11" H 10400 4700 50  0000 C CNN
+F 1 "servo2" V 10500 4500 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 11650 4800 50  0000 C CNN
+F 3 "" H 10400 4500 50  0000 C CNN
+	1    10400 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X03-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P12
+U 1 1 5AC69027
+P 10400 5000
+F 0 "P12" H 10400 5200 50  0000 C CNN
+F 1 "servo3" V 10500 5000 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 11600 5250 50  0000 C CNN
+F 3 "" H 10400 5000 50  0000 C CNN
+	1    10400 5000
+	1    0    0    -1  
+$EndComp
+Text GLabel 10200 3950 0    60   Input ~ 0
++7V4_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR08
+U 1 1 5AC690E5
+P 10200 3850
+F 0 "#PWR08" H 10200 3600 50  0001 C CNN
+F 1 "GND" V 10200 3650 50  0000 C CNN
+F 2 "" H 10200 3850 50  0001 C CNN
+F 3 "" H 10200 3850 50  0001 C CNN
+	1    10200 3850
+	0    1    1    0   
+$EndComp
+Text GLabel 10200 4500 0    60   Input ~ 0
++7V4_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR09
+U 1 1 5AC6915C
+P 10200 4400
+F 0 "#PWR09" H 10200 4150 50  0001 C CNN
+F 1 "GND" V 10200 4200 50  0000 C CNN
+F 2 "" H 10200 4400 50  0001 C CNN
+F 3 "" H 10200 4400 50  0001 C CNN
+	1    10200 4400
+	0    1    1    0   
+$EndComp
+Text GLabel 10200 5000 0    60   Input ~ 0
++7V4_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR010
+U 1 1 5AC691B5
+P 10200 4900
+F 0 "#PWR010" H 10200 4650 50  0001 C CNN
+F 1 "GND" V 10200 4700 50  0000 C CNN
+F 2 "" H 10200 4900 50  0001 C CNN
+F 3 "" H 10200 4900 50  0001 C CNN
+	1    10200 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR011
+U 1 1 5AC721A8
+P 10000 6750
+F 0 "#PWR011" H 10000 6500 50  0001 C CNN
+F 1 "GND" H 10000 6600 50  0000 C CNN
+F 2 "" H 10000 6750 50  0001 C CNN
+F 3 "" H 10000 6750 50  0001 C CNN
+	1    10000 6750
+	1    0    0    -1  
+$EndComp
+Text GLabel 10000 5750 1    60   Input ~ 0
++5V_P
+Text GLabel 6500 7300 2    60   Input ~ 0
+servoRX
+Text GLabel 6500 6700 2    60   Input ~ 0
+servoTX
+Text GLabel 6500 6600 2    60   Input ~ 0
+interface_capteur_RX
+Text GLabel 8700 3850 0    60   Input ~ 0
+servoTX
+Text GLabel 9750 3500 1    60   Input ~ 0
++5V_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:R-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue R11
+U 1 1 5AC74808
+P 9750 3700
+F 0 "R11" V 9830 3700 50  0000 C CNN
+F 1 "R" V 9750 3700 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric" V 9680 3700 50  0001 C CNN
+F 3 "" H 9750 3700 50  0001 C CNN
+	1    9750 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 3500 9750 3550
+Text GLabel 8950 4350 0    60   Input ~ 0
+servo
+Wire Wire Line
+	9750 4050 9750 4600
+Connection ~ 9750 4050
+Connection ~ 9750 4600
+Text GLabel 4100 6000 0    60   Input ~ 0
++5V_P
+NoConn ~ 4100 4850
+NoConn ~ 6350 1250
+NoConn ~ 6350 1350
+NoConn ~ 6350 1450
+NoConn ~ 6350 1550
+NoConn ~ 6350 1650
+NoConn ~ 6350 1750
+NoConn ~ 4100 5050
+Text Notes 850  6400 0    60   ~ 0
+Connecteurs reliés à la carte d'alimentation
+Text GLabel 1100 6650 0    60   Input ~ 0
++5V_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:trou-d3mm-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue U22
+U 1 1 5ACDFBE4
+P 800 1200
+F 0 "U22" H 800 1200 60  0000 C CNN
+F 1 "trou-d3mm" H 850 1300 60  0000 C CNN
+F 2 "robot_1A:trou_d3mm" H 800 1200 60  0001 C CNN
+F 3 "" H 800 1200 60  0001 C CNN
+	1    800  1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:trou-d3mm-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue U23
+U 1 1 5ACDFC50
+P 1500 1200
+F 0 "U23" H 1500 1200 60  0000 C CNN
+F 1 "trou-d3mm" H 1550 1300 60  0000 C CNN
+F 2 "robot_1A:trou_d3mm" H 1500 1200 60  0001 C CNN
+F 3 "" H 1500 1200 60  0001 C CNN
+	1    1500 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:Conn_01x02-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue JL1
+U 1 1 5ACE47E5
+P 1450 6650
+F 0 "JL1" H 1450 6750 50  0000 C CNN
+F 1 "alim_5V" H 1450 6450 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical" H 1450 6650 50  0001 C CNN
+F 3 "" H 1450 6650 50  0001 C CNN
+	1    1450 6650
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0105
+U 1 1 5ACF991B
+P 1850 1200
+F 0 "#PWR0105" H 1850 950 50  0001 C CNN
+F 1 "GND" H 1850 1050 50  0000 C CNN
+F 2 "" H 1850 1200 50  0001 C CNN
+F 3 "" H 1850 1200 50  0001 C CNN
+	1    1850 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0106
+U 1 1 5ACF99F6
+P 1850 800
+F 0 "#PWR0106" H 1850 550 50  0001 C CNN
+F 1 "GND" H 1850 650 50  0000 C CNN
+F 2 "" H 1850 800 50  0001 C CNN
+F 3 "" H 1850 800 50  0001 C CNN
+	1    1850 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0107
+U 1 1 5ACF9A64
+P 1150 1200
+F 0 "#PWR0107" H 1150 950 50  0001 C CNN
+F 1 "GND" H 1150 1050 50  0000 C CNN
+F 2 "" H 1150 1200 50  0001 C CNN
+F 3 "" H 1150 1200 50  0001 C CNN
+	1    1150 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0108
+U 1 1 5ACF9AD2
+P 1150 800
+F 0 "#PWR0108" H 1150 550 50  0001 C CNN
+F 1 "GND" H 1150 650 50  0000 C CNN
+F 2 "" H 1150 800 50  0001 C CNN
+F 3 "" H 1150 800 50  0001 C CNN
+	1    1150 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 4600 9750 5100
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0110
+U 1 1 5C61F79C
+P 1250 6900
+F 0 "#PWR0110" H 1250 6650 50  0001 C CNN
+F 1 "GND" H 1255 6727 50  0000 C CNN
+F 2 "" H 1250 6900 50  0001 C CNN
+F 3 "" H 1250 6900 50  0001 C CNN
+	1    1250 6900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 6750 1250 6900
+Wire Wire Line
+	950  2850 1550 2850
+Wire Wire Line
+	950  2650 1550 2650
+Wire Wire Line
+	950  2250 1550 2250
+Wire Wire Line
+	950  2050 1550 2050
+Text GLabel 6500 3650 2    60   Input ~ 0
+interface_capteur_TX
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X03-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P5
+U 1 1 5C646ACE
+P 1050 5850
+F 0 "P5" H 1050 6050 50  0000 C CNN
+F 1 "vers carte d'interface capteurs TOF et ultrason" H 700 5600 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 3600 6000 50  0000 C CNN
+F 3 "" H 1050 5850 50  0000 C CNN
+	1    1050 5850
+	-1   0    0    1   
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0111
+U 1 1 5C646EAA
+P 1550 5950
+F 0 "#PWR0111" H 1550 5700 50  0001 C CNN
+F 1 "GND" V 1555 5822 50  0000 R CNN
+F 2 "" H 1550 5950 50  0001 C CNN
+F 3 "" H 1550 5950 50  0001 C CNN
+	1    1550 5950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1250 5950 1550 5950
+Text GLabel 1250 5750 2    60   Input ~ 0
+interface_capteur_RX
+Text GLabel 1250 5850 2    60   Input ~ 0
+interface_capteur_TX
+Text GLabel 4100 6500 0    60   Input ~ 0
++3V3_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:PWR_FLAG-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #FLG0101
+U 1 1 5C65C177
+P 4500 2150
+F 0 "#FLG0101" H 4500 2225 50  0001 C CNN
+F 1 "PWR_FLAG" H 4500 2324 50  0000 C CNN
+F 2 "" H 4500 2150 50  0001 C CNN
+F 3 "" H 4500 2150 50  0001 C CNN
+	1    4500 2150
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4900 2350
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0113
+U 1 1 5C691CBB
+P 4100 4450
+F 0 "#PWR0113" H 4100 4200 50  0001 C CNN
+F 1 "GND" V 4105 4322 50  0000 R CNN
+F 2 "" H 4100 4450 50  0001 C CNN
+F 3 "" H 4100 4450 50  0001 C CNN
+	1    4100 4450
+	0    1    1    0   
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0114
+U 1 1 5C691D30
+P 4100 6700
+F 0 "#PWR0114" H 4100 6450 50  0001 C CNN
+F 1 "GND" V 4105 6572 50  0000 R CNN
+F 2 "" H 4100 6700 50  0001 C CNN
+F 3 "" H 4100 6700 50  0001 C CNN
+	1    4100 6700
+	0    1    1    0   
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0115
+U 1 1 5C691E95
+P 4100 6800
+F 0 "#PWR0115" H 4100 6550 50  0001 C CNN
+F 1 "GND" V 4105 6672 50  0000 R CNN
+F 2 "" H 4100 6800 50  0001 C CNN
+F 3 "" H 4100 6800 50  0001 C CNN
+	1    4100 6800
+	0    1    1    0   
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0116
+U 1 1 5C691F98
+P 4100 6100
+F 0 "#PWR0116" H 4100 5850 50  0001 C CNN
+F 1 "GND" V 4105 5972 50  0000 R CNN
+F 2 "" H 4100 6100 50  0001 C CNN
+F 3 "" H 4100 6100 50  0001 C CNN
+	1    4100 6100
+	0    1    1    0   
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0117
+U 1 1 5C697F91
+P 6500 4450
+F 0 "#PWR0117" H 6500 4200 50  0001 C CNN
+F 1 "GND" V 6505 4322 50  0000 R CNN
+F 2 "" H 6500 4450 50  0001 C CNN
+F 3 "" H 6500 4450 50  0001 C CNN
+	1    6500 4450
+	0    -1   -1   0   
+$EndComp
+Text GLabel 4100 7400 0    60   Input ~ 0
+RGG
+Connection ~ 9750 5100
+Wire Wire Line
+	9750 5100 9750 5800
+NoConn ~ 4100 3750
+NoConn ~ 4100 3950
+NoConn ~ 4100 4150
+NoConn ~ 4100 4750
+NoConn ~ 4100 5150
+NoConn ~ 4100 5250
+NoConn ~ 4100 5700
+NoConn ~ 4100 6200
+NoConn ~ 4100 6300
+NoConn ~ 4100 6400
+NoConn ~ 4100 6600
+NoConn ~ 4100 6900
+NoConn ~ 4100 7000
+NoConn ~ 4100 7300
+NoConn ~ 6500 6800
+NoConn ~ 6500 6900
+NoConn ~ 6500 6000
+NoConn ~ 6500 6100
+NoConn ~ 6500 6200
+NoConn ~ 6500 6300
+NoConn ~ 6500 5350
+NoConn ~ 6500 5600
+NoConn ~ 6500 5700
+NoConn ~ 6500 4950
+NoConn ~ 6500 4750
+NoConn ~ 6500 4550
+NoConn ~ 6500 3550
+NoConn ~ 6500 3750
+NoConn ~ 6500 3850
+NoConn ~ 6500 3950
+NoConn ~ 6500 4050
+NoConn ~ 6500 4150
+NoConn ~ 6500 4350
+NoConn ~ 4100 4950
+Wire Wire Line
+	9750 4050 10200 4050
+Wire Wire Line
+	9750 4600 10200 4600
+Wire Wire Line
+	9750 5100 10200 5100
+Text GLabel 8700 5800 0    60   Input ~ 0
+servoRX
+Text GLabel 1150 7450 0    60   Input ~ 0
++12V_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:Conn_01x02-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue JL3
+U 1 1 5C75654C
+P 2050 7200
+F 0 "JL3" H 2050 7300 50  0000 C CNN
+F 1 "alim_12V" H 2050 7000 50  0000 C CNN
+F 2 "B plug:B plug 5mm" H 2050 7200 50  0001 C CNN
+F 3 "" H 2050 7200 50  0001 C CNN
+	1    2050 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0123
+U 1 1 5C756559
+P 1600 7200
+F 0 "#PWR0123" H 1600 6950 50  0001 C CNN
+F 1 "GND" H 1605 7027 50  0000 C CNN
+F 2 "" H 1600 7200 50  0001 C CNN
+F 3 "" H 1600 7200 50  0001 C CNN
+	1    1600 7200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1850 7300 1850 7450
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:Conn_01x02-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue JL5
+U 1 1 5C75D95B
+P 7600 1400
+F 0 "JL5" H 7600 1500 50  0000 C CNN
+F 1 "alim_pont_en_H" H 7600 1200 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7600 1400 50  0001 C CNN
+F 3 "" H 7600 1400 50  0001 C CNN
+	1    7600 1400
+	1    0    0    -1  
+$EndComp
+Text GLabel 7400 1400 0    60   Input ~ 0
++12V_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0124
+U 1 1 5C75DABF
+P 7250 1600
+F 0 "#PWR0124" H 7250 1350 50  0001 C CNN
+F 1 "GND" H 7255 1427 50  0000 C CNN
+F 2 "" H 7250 1600 50  0001 C CNN
+F 3 "" H 7250 1600 50  0001 C CNN
+	1    7250 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7400 1500 7250 1500
+Wire Wire Line
+	7250 1500 7250 1600
+Text Notes 6950 1200 0    50   ~ 0
+Alim vers pont en H
+Wire Wire Line
+	4400 2150 4500 2150
+Connection ~ 4500 2150
+Wire Wire Line
+	4500 2150 4900 2150
+Text GLabel 2600 7100 0    60   Input ~ 0
++7V4_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:Conn_01x02-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue JL2
+U 1 1 5C6F49F2
+P 2900 7000
+F 0 "JL2" H 2900 7100 50  0000 C CNN
+F 1 "alim_7V4" H 2900 6800 50  0000 C CNN
+F 2 "B plug:B plug 5mm" H 2900 7000 50  0001 C CNN
+F 3 "" H 2900 7000 50  0001 C CNN
+	1    2900 7000
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0109
+U 1 1 5C6F49F9
+P 2450 6800
+F 0 "#PWR0109" H 2450 6550 50  0001 C CNN
+F 1 "GND" H 2455 6627 50  0000 C CNN
+F 2 "" H 2450 6800 50  0001 C CNN
+F 3 "" H 2450 6800 50  0001 C CNN
+	1    2450 6800
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	750  6300 3200 6300
+Wire Notes Line
+	3200 6300 3200 7650
+Wire Notes Line
+	3200 7700 700  7700
+Wire Notes Line
+	700  7650 700  6300
+Text GLabel 2950 5800 0    60   Input ~ 0
++7V4_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:Conn_01x02-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue JL4
+U 1 1 5C6F7653
+P 3150 5700
+F 0 "JL4" H 3150 5800 50  0000 C CNN
+F 1 "alim de la carte d'interface" H 3250 5900 50  0000 C CNN
+F 2 "B plug:B plug 5mm" H 3150 5700 50  0001 C CNN
+F 3 "" H 3150 5700 50  0001 C CNN
+	1    3150 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0112
+U 1 1 5C6F765A
+P 2650 5550
+F 0 "#PWR0112" H 2650 5300 50  0001 C CNN
+F 1 "GND" H 2655 5377 50  0000 C CNN
+F 2 "" H 2650 5550 50  0001 C CNN
+F 3 "" H 2650 5550 50  0001 C CNN
+	1    2650 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 7 1 5C6F2123
+P 10650 6250
+F 0 "U2" H 10880 6296 50  0000 L CNN
+F 1 "74HC04" H 10880 6205 50  0000 L CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10650 6250 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 10650 6250 50  0001 C CNN
+	7    10650 6250
+	1    0    0    -1  
+$EndComp
+Text GLabel 10650 5750 1    60   Input ~ 0
++5V_P
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:GND-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue #PWR0118
+U 1 1 5C6F24CF
+P 10650 6750
+F 0 "#PWR0118" H 10650 6500 50  0001 C CNN
+F 1 "GND" H 10650 6600 50  0000 C CNN
+F 2 "" H 10650 6750 50  0001 C CNN
+F 3 "" H 10650 6750 50  0001 C CNN
+	1    10650 6750
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 2 1 5C6F2739
+P 10800 850
+F 0 "U2" H 10800 1167 50  0000 C CNN
+F 1 "74HC04" H 10800 1076 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10800 850 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 10800 850 50  0001 C CNN
+	2    10800 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 3 1 5C6F27DD
+P 10800 1400
+F 0 "U2" H 10800 1717 50  0000 C CNN
+F 1 "74HC04" H 10800 1626 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10800 1400 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 10800 1400 50  0001 C CNN
+	3    10800 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 4 1 5C6F288A
+P 9150 5050
+F 0 "U2" H 9150 5367 50  0000 C CNN
+F 1 "74HC04" H 9150 5276 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 9150 5050 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 9150 5050 50  0001 C CNN
+	4    9150 5050
+	0    1    1    0   
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 5 1 5C6F2924
+P 10800 2400
+F 0 "U2" H 10800 2717 50  0000 C CNN
+F 1 "74HC04" H 10800 2626 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10800 2400 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 10800 2400 50  0001 C CNN
+	5    10800 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 6 1 5C6F29CF
+P 10800 1900
+F 0 "U2" H 10800 2217 50  0000 C CNN
+F 1 "74HC04" H 10800 2126 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10800 1900 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 10800 1900 50  0001 C CNN
+	6    10800 1900
+	1    0    0    -1  
+$EndComp
+NoConn ~ 11100 850 
+NoConn ~ 11100 1400
+NoConn ~ 11100 1900
+NoConn ~ 11100 2400
+NoConn ~ 11100 2900
+Wire Wire Line
+	9450 3850 9750 3850
+Wire Wire Line
+	9750 3850 9750 4050
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X03-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P3
+U 1 1 5C6F7D3B
+P 1100 4300
+F 0 "P3" H 1100 4500 50  0000 C CNN
+F 1 "vers raspberry pi" H 1000 4050 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 3650 4450 50  0000 C CNN
+F 3 "" H 1100 4300 50  0000 C CNN
+	1    1100 4300
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0120
+U 1 1 5C6F7F35
+P 1300 4400
+F 0 "#PWR0120" H 1300 4150 50  0001 C CNN
+F 1 "GND" H 1305 4227 50  0000 C CNN
+F 2 "" H 1300 4400 50  0001 C CNN
+F 3 "" H 1300 4400 50  0001 C CNN
+	1    1300 4400
+	1    0    0    -1  
+$EndComp
+Text GLabel 1400 4200 2    50   Input ~ 0
+raspberry_SDA
+Text GLabel 1400 4300 2    50   Input ~ 0
+raspberry_SCL
+Wire Wire Line
+	1300 4200 1400 4200
+Wire Wire Line
+	1400 4300 1300 4300
+$Comp
+L carte_principale_robot1A_cdF2019-rescue:CONN_01X03-carte_1A_cdfr2018-rescue-carte_1A_cdfr2018-rescue P4
+U 1 1 5C6F8F2E
+P 1100 4950
+F 0 "P4" H 1100 5150 50  0000 C CNN
+F 1 "vers raspberry pi" H 1000 4700 50  0000 C CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 3650 5100 50  0000 C CNN
+F 3 "" H 1100 4950 50  0000 C CNN
+	1    1100 4950
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0121
+U 1 1 5C6F8F35
+P 1300 5050
+F 0 "#PWR0121" H 1300 4800 50  0001 C CNN
+F 1 "GND" H 1305 4877 50  0000 C CNN
+F 2 "" H 1300 5050 50  0001 C CNN
+F 3 "" H 1300 5050 50  0001 C CNN
+	1    1300 5050
+	1    0    0    -1  
+$EndComp
+Text GLabel 1400 4850 2    50   Input ~ 0
+raspberry_RX
+Text GLabel 1400 4950 2    50   Input ~ 0
+raspberry_TX
+Wire Wire Line
+	1300 4850 1400 4850
+Wire Wire Line
+	1400 4950 1300 4950
+$Comp
+L 74xx:74LS126 U3
+U 1 1 5C71124B
+P 9150 3850
+F 0 "U3" H 9150 4167 50  0000 C CNN
+F 1 "74LS126" H 9150 4076 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 9150 3850 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS126" H 9150 3850 50  0001 C CNN
+	1    9150 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS126 U3
+U 2 1 5C71137A
+P 9150 5800
+F 0 "U3" H 9150 6024 50  0000 C CNN
+F 1 "74LS126" H 9150 6115 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 9150 5800 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS126" H 9150 5800 50  0001 C CNN
+	2    9150 5800
+	-1   0    0    1   
+$EndComp
+$Comp
+L 74xx:74HC04 U2
+U 1 1 5C6F18B8
+P 10800 2900
+F 0 "U2" V 10754 3080 50  0000 L CNN
+F 1 "74HC04" V 10845 3080 50  0000 L CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10800 2900 50  0001 C CNN
+F 3 "http://www.nxp.com/documents/data_sheet/74HC_HCT04.pdf" H 10800 2900 50  0001 C CNN
+	1    10800 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 4100 9150 4350
+Wire Wire Line
+	9150 5350 9150 5550
+Wire Wire Line
+	9450 5800 9750 5800
+Wire Wire Line
+	8950 4350 9150 4350
+Wire Wire Line
+	8700 5800 8850 5800
+Wire Wire Line
+	8700 3850 8850 3850
+$Comp
+L 74xx:74LS126 U3
+U 5 1 5C714770
+P 10000 6250
+F 0 "U3" H 10230 6296 50  0000 L CNN
+F 1 "74LS126" H 10230 6205 50  0000 L CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 10000 6250 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS126" H 10000 6250 50  0001 C CNN
+	5    10000 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS126 U3
+U 4 1 5C71573D
+P 9750 1850
+F 0 "U3" H 9750 2167 50  0000 C CNN
+F 1 "74LS126" H 9750 2076 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 9750 1850 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS126" H 9750 1850 50  0001 C CNN
+	4    9750 1850
+	1    0    0    -1  
+$EndComp
+NoConn ~ 10050 1850
+NoConn ~ 10050 850 
+Connection ~ 9750 3850
+Text GLabel 4100 4550 0    50   Input ~ 0
+raspberry_SDA
+Text GLabel 6500 6500 2    50   Input ~ 0
+raspberry_SCL
+Text GLabel 6500 7500 2    50   Input ~ 0
+raspberry_RX
+Text GLabel 6500 7400 2    50   Input ~ 0
+raspberry_TX
+NoConn ~ 6500 6400
+NoConn ~ 6500 5800
+NoConn ~ 6500 5900
+NoConn ~ 6500 5150
+NoConn ~ 4100 3550
+NoConn ~ 4100 3650
+NoConn ~ 4100 5800
+NoConn ~ 4100 5900
+NoConn ~ 4100 7500
+NoConn ~ 4100 7600
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5C71FB15
+P 2650 7100
+F 0 "#FLG0102" H 2650 7175 50  0001 C CNN
+F 1 "PWR_FLAG" H 2650 7274 50  0000 C CNN
+F 2 "" H 2650 7100 50  0001 C CNN
+F 3 "~" H 2650 7100 50  0001 C CNN
+	1    2650 7100
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0103
+U 1 1 5C7218FB
+P 1250 7450
+F 0 "#FLG0103" H 1250 7525 50  0001 C CNN
+F 1 "PWR_FLAG" H 1250 7624 50  0000 C CNN
+F 2 "" H 1250 7450 50  0001 C CNN
+F 3 "~" H 1250 7450 50  0001 C CNN
+	1    1250 7450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG0104
+U 1 1 5C722A41
+P 1150 6650
+F 0 "#FLG0104" H 1150 6725 50  0001 C CNN
+F 1 "PWR_FLAG" H 1150 6824 50  0000 C CNN
+F 2 "" H 1150 6650 50  0001 C CNN
+F 3 "~" H 1150 6650 50  0001 C CNN
+	1    1150 6650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 6650 1150 6650
+Connection ~ 1150 6650
+Wire Wire Line
+	1150 6650 1100 6650
+$Comp
+L power:PWR_FLAG #FLG0105
+U 1 1 5C724F9C
+P 2250 6650
+F 0 "#FLG0105" H 2250 6725 50  0001 C CNN
+F 1 "PWR_FLAG" H 2250 6824 50  0000 C CNN
+F 2 "" H 2250 6650 50  0001 C CNN
+F 3 "~" H 2250 6650 50  0001 C CNN
+	1    2250 6650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0128
+U 1 1 5C725031
+P 2250 6650
+F 0 "#PWR0128" H 2250 6400 50  0001 C CNN
+F 1 "GND" H 2255 6477 50  0000 C CNN
+F 2 "" H 2250 6650 50  0001 C CNN
+F 3 "" H 2250 6650 50  0001 C CNN
+	1    2250 6650
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74LS126 U3
+U 3 1 5C71567D
+P 9750 850
+F 0 "U3" H 9750 1167 50  0000 C CNN
+F 1 "74LS126" H 9750 1076 50  0000 C CNN
+F 2 "Package_DIP:DIP-14_W7.62mm" H 9750 850 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS126" H 9750 850 50  0001 C CNN
+	3    9750 850 
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	9250 500  11200 500 
+Wire Notes Line
+	11200 500  11200 3100
+Wire Notes Line
+	11200 3100 9250 3100
+Wire Notes Line
+	9250 3100 9250 550 
+Text Notes 9300 2450 0    50   ~ 0
+Portes logiques inutilisées
+$Comp
+L power:GND #PWR0119
+U 1 1 5C7E9826
+P 9750 2100
+F 0 "#PWR0119" H 9750 1850 50  0001 C CNN
+F 1 "GND" H 9755 1927 50  0000 C CNN
+F 2 "" H 9750 2100 50  0001 C CNN
+F 3 "" H 9750 2100 50  0001 C CNN
+	1    9750 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0122
+U 1 1 5C7E9880
+P 9450 1850
+F 0 "#PWR0122" H 9450 1600 50  0001 C CNN
+F 1 "GND" H 9455 1677 50  0000 C CNN
+F 2 "" H 9450 1850 50  0001 C CNN
+F 3 "" H 9450 1850 50  0001 C CNN
+	1    9450 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0125
+U 1 1 5C80153D
+P 9450 850
+F 0 "#PWR0125" H 9450 600 50  0001 C CNN
+F 1 "GND" H 9455 677 50  0000 C CNN
+F 2 "" H 9450 850 50  0001 C CNN
+F 3 "" H 9450 850 50  0001 C CNN
+	1    9450 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0126
+U 1 1 5C801618
+P 9750 1100
+F 0 "#PWR0126" H 9750 850 50  0001 C CNN
+F 1 "GND" H 9755 927 50  0000 C CNN
+F 2 "" H 9750 1100 50  0001 C CNN
+F 3 "" H 9750 1100 50  0001 C CNN
+	1    9750 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 850  10500 1400
+Connection ~ 10500 1400
+Wire Wire Line
+	10500 1400 10500 1900
+Connection ~ 10500 1900
+Wire Wire Line
+	10500 1900 10500 2400
+Connection ~ 10500 2400
+Wire Wire Line
+	10500 2400 10500 2900
+Connection ~ 10500 2900
+Wire Wire Line
+	10500 2900 10500 3000
+$Comp
+L power:GND #PWR0101
+U 1 1 5C800D6D
+P 10500 3000
+F 0 "#PWR0101" H 10500 2750 50  0001 C CNN
+F 1 "GND" H 10505 2827 50  0000 C CNN
+F 2 "" H 10500 3000 50  0001 C CNN
+F 3 "" H 10500 3000 50  0001 C CNN
+	1    10500 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 4350 9150 4750
+Connection ~ 9150 4350
+Wire Wire Line
+	2950 5700 2800 5700
+Wire Wire Line
+	2800 5700 2800 5550
+Wire Wire Line
+	2800 5550 2650 5550
+Wire Wire Line
+	1850 7200 1600 7200
+Wire Wire Line
+	1850 7450 1250 7450
+Connection ~ 1250 7450
+Wire Wire Line
+	1250 7450 1150 7450
+Wire Wire Line
+	2700 7000 2650 7000
+Wire Wire Line
+	2650 7000 2650 6750
+Wire Wire Line
+	2650 6750 2450 6750
+Wire Wire Line
+	2450 6750 2450 6800
+Wire Wire Line
+	2600 7100 2650 7100
+Connection ~ 2650 7100
+Wire Wire Line
+	2650 7100 2700 7100
+$EndSCHEMATC

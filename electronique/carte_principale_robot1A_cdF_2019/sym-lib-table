@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name carte_principale_robot1A_cdF2019-rescue)(type Legacy)(uri ${KIPRJMOD}/carte_principale_robot1A_cdF2019-rescue.lib)(options "")(descr ""))
+)
