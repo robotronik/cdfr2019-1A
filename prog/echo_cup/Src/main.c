@@ -47,8 +47,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-long count=0;
-long input_capture=0;
+volatile long count;
+volatile int input_capture;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -63,8 +63,8 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
  if (htim->Instance==TIM1)
   {
-    input_capture= __HAL_TIM_GetCompare(&htim1, TIM_CHANNEL_1);    //read TIM2 channel 1 capture value
-    __HAL_TIM_SetCounter(&htim1, 0);    //reset counter after input capture interrupt occurs
+    input_capture= __HAL_TIM_GetCounter(htim);    //read TIM2 channel 1 capture value
+    __HAL_TIM_SetCounter(htim, 0);    //reset counter after input capture interrupt occurs
   }
 }
 /* USER CODE END 0 */
@@ -80,6 +80,7 @@ int main(void)
   int n;
 
   /* USER CODE END 1 */
+  
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -109,15 +110,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    //envoie signal trigger
     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_7);
     HAL_Delay(0.1);
     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_7);
+
+
     count = __HAL_TIM_GetCounter(&htim1);
-    input_capture = __HAL_TIM_GetCompare(&htim1,TIM_CHANNEL_1);
+    //input_capture = __HAL_TIM_GetCompare(&htim1,TIM_CHANNEL_1);
     HAL_Delay(100);
 
-    n=sprintf (buffer, "count: %ld et capture: %ld\n", count, input_capture);
-
+    n=sprintf (buffer, "\033[J\rcount: %ld et capture: %d\n", count, input_capture);
     HAL_UART_Transmit(&huart2,buffer,n,0xFFF);
     /* USER CODE END WHILE */
 
@@ -135,11 +138,11 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the main internal regulator output voltage
+  /** Configure the main internal regulator output voltage 
   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
-  /** Initializes the CPU, AHB and APB busses clocks
+  /** Initializes the CPU, AHB and APB busses clocks 
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -149,7 +152,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks
+  /** Initializes the CPU, AHB and APB busses clocks 
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -189,7 +192,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{
+{ 
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
