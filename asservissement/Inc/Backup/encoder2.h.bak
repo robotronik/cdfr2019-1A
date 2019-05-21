@@ -1,0 +1,58 @@
+#ifndef ENCODER2_H
+#define ENCODER2_H
+
+typedef struct
+{
+  int x;
+  int y;
+} Point;
+
+typedef struct
+{
+  int* droite;
+  int* gauche;
+} orientation;
+
+typedef struct
+{
+    
+    int distance_encoder;
+    
+    int nbpoint;
+    int epsilon;
+    Point* cap;
+}parametre;
+
+parametre* cstes;
+
+typedef struct 
+{
+    Point* pobjectif;
+    Point* pposition;
+    Point* perreur;
+
+    orientation* count;
+    orientation* pdistanceparcourue;
+    orientation* pconsigne;
+
+    int* ptheta;
+    int* moy_prev;
+}asservissement;
+
+asservissement* asserv;
+
+void theta(int* ptheta,unsigned int* cnt_droite,unsigned int* cnt_gauche,int distance_encoder);
+
+int mise_a_jour_distance(unsigned int* pdistanceparcourue_droite,unsigned int* pdistanceparcourue_gauche);
+
+void mise_a_jour_x_y(asservissement* asserv);
+
+void consigne(int epsilon,Point* perreur,Point* pobjectif,Point* pposition,orientation* pconsigne,int* ptheta);
+
+void commande_moteur(int* pconsigne_gauche,int* pconsigne_droite);
+
+void init(asservissement* asserv,parametre* cstes);
+
+void navigation(asservissement* asserv,parametre* cstes);
+
+#endif

@@ -1,0 +1,1103 @@
+ARM GAS  /tmp/ccegb7yK.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"encoder3.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.theta,"ax",%progbits
+  18              		.align	1
+  19              		.global	theta
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	theta:
+  27              	.LVL0:
+  28              	.LFB126:
+  29              		.file 1 "Src/encoder3.c"
+   1:Src/encoder3.c **** #include"vincent.h"
+   2:Src/encoder3.c **** #include "encoder3.h"
+   3:Src/encoder3.c **** #include <math.h>
+   4:Src/encoder3.c **** #include <stdlib.h>
+   5:Src/encoder3.c **** // branche prog    prog/test_odo/
+   6:Src/encoder3.c **** 
+   7:Src/encoder3.c **** 
+   8:Src/encoder3.c **** #include "tim.h"
+   9:Src/encoder3.c **** #include "stm32f4xx.h"
+  10:Src/encoder3.c **** 
+  11:Src/encoder3.c **** 
+  12:Src/encoder3.c **** void theta(int* ptheta,volatile int cnt_droite,volatile int cnt_gauche,int distance_encoder){
+  30              		.loc 1 12 93 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  35              		.loc 1 12 93 is_stmt 0 view .LVU1
+  36 0000 82B0     		sub	sp, sp, #8
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 8
+  39 0002 0191     		str	r1, [sp, #4]
+  40 0004 0092     		str	r2, [sp]
+  13:Src/encoder3.c ****     *ptheta=((cnt_droite-cnt_gauche)/distance_encoder*100/628)%628;
+  41              		.loc 1 13 5 is_stmt 1 view .LVU2
+  42              		.loc 1 13 25 is_stmt 0 view .LVU3
+  43 0006 019A     		ldr	r2, [sp, #4]
+  44              	.LVL1:
+  45              		.loc 1 13 25 view .LVU4
+ARM GAS  /tmp/ccegb7yK.s 			page 2
+
+
+  46 0008 0099     		ldr	r1, [sp]
+  47              	.LVL2:
+  48              		.loc 1 13 25 view .LVU5
+  49 000a 521A     		subs	r2, r2, r1
+  50              		.loc 1 13 37 view .LVU6
+  51 000c 92FBF3F2 		sdiv	r2, r2, r3
+  52              		.loc 1 13 54 view .LVU7
+  53 0010 6423     		movs	r3, #100
+  54              	.LVL3:
+  55              		.loc 1 13 54 view .LVU8
+  56 0012 03FB02F3 		mul	r3, r3, r2
+  57              		.loc 1 13 58 view .LVU9
+  58 0016 094A     		ldr	r2, .L3
+  59 0018 82FB03C1 		smull	ip, r1, r2, r3
+  60 001c DB17     		asrs	r3, r3, #31
+  61 001e C3EBE113 		rsb	r3, r3, r1, asr #7
+  62              		.loc 1 13 63 view .LVU10
+  63 0022 82FB0321 		smull	r2, r1, r2, r3
+  64 0026 DA17     		asrs	r2, r3, #31
+  65 0028 C2EBE112 		rsb	r2, r2, r1, asr #7
+  66 002c 4FF41D71 		mov	r1, #628
+  67 0030 01FB1232 		mls	r2, r1, r2, r3
+  68              		.loc 1 13 12 view .LVU11
+  69 0034 0260     		str	r2, [r0]
+  14:Src/encoder3.c **** }
+  70              		.loc 1 14 1 view .LVU12
+  71 0036 02B0     		add	sp, sp, #8
+  72              	.LCFI1:
+  73              		.cfi_def_cfa_offset 0
+  74              	.LVL4:
+  75              		.loc 1 14 1 view .LVU13
+  76              		@ sp needed
+  77 0038 7047     		bx	lr
+  78              	.L4:
+  79 003a 00BF     		.align	2
+  80              	.L3:
+  81 003c F3A72D34 		.word	875407347
+  82              		.cfi_endproc
+  83              	.LFE126:
+  85              		.section	.text.mise_a_jour_distance,"ax",%progbits
+  86              		.align	1
+  87              		.global	mise_a_jour_distance
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  91              		.fpu fpv4-sp-d16
+  93              	mise_a_jour_distance:
+  94              	.LVL5:
+  95              	.LFB127:
+  15:Src/encoder3.c **** 
+  16:Src/encoder3.c **** int mise_a_jour_distance(Encoder* encoder_droite,Encoder* encoder_gauche,unsigned int* pdistancepar
+  17:Src/encoder3.c **** {
+  96              		.loc 1 17 1 is_stmt 1 view -0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 8
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+ARM GAS  /tmp/ccegb7yK.s 			page 3
+
+
+ 101              		.loc 1 17 1 is_stmt 0 view .LVU15
+ 102 0000 10B4     		push	{r4}
+ 103              	.LCFI2:
+ 104              		.cfi_def_cfa_offset 4
+ 105              		.cfi_offset 4, -4
+ 106 0002 83B0     		sub	sp, sp, #12
+ 107              	.LCFI3:
+ 108              		.cfi_def_cfa_offset 16
+  18:Src/encoder3.c ****     volatile int Encval_droite=-encoder_droite->steps;
+ 109              		.loc 1 18 5 is_stmt 1 view .LVU16
+ 110              		.loc 1 18 47 is_stmt 0 view .LVU17
+ 111 0004 4068     		ldr	r0, [r0, #4]
+ 112              	.LVL6:
+ 113              		.loc 1 18 32 view .LVU18
+ 114 0006 4042     		rsbs	r0, r0, #0
+ 115              		.loc 1 18 18 view .LVU19
+ 116 0008 0190     		str	r0, [sp, #4]
+  19:Src/encoder3.c ****     volatile int Encval_gauche=encoder_gauche->steps;
+ 117              		.loc 1 19 5 is_stmt 1 view .LVU20
+ 118              		.loc 1 19 46 is_stmt 0 view .LVU21
+ 119 000a 4968     		ldr	r1, [r1, #4]
+ 120              	.LVL7:
+ 121              		.loc 1 19 18 view .LVU22
+ 122 000c 0091     		str	r1, [sp]
+  20:Src/encoder3.c **** 
+  21:Src/encoder3.c ****     int rayonroue= 460; //(cm)
+ 123              		.loc 1 21 5 is_stmt 1 view .LVU23
+ 124              	.LVL8:
+  22:Src/encoder3.c ****     int nb_tick_tour= 50 ;
+ 125              		.loc 1 22 5 view .LVU24
+  23:Src/encoder3.c ****     *pdistanceparcourue_droite+=6*rayonroue/(Encval_droite/*TIM1->CNT/nb_tick_tour*/)/2;
+ 126              		.loc 1 23 5 view .LVU25
+ 127              		.loc 1 23 44 is_stmt 0 view .LVU26
+ 128 000e 0198     		ldr	r0, [sp, #4]
+ 129 0010 40F6C821 		movw	r1, #2760
+ 130 0014 91FBF0F0 		sdiv	r0, r1, r0
+ 131              		.loc 1 23 86 view .LVU27
+ 132 0018 00EBD070 		add	r0, r0, r0, lsr #31
+ 133              		.loc 1 23 31 view .LVU28
+ 134 001c 1468     		ldr	r4, [r2]
+ 135 001e 04EB6000 		add	r0, r4, r0, asr #1
+ 136 0022 1060     		str	r0, [r2]
+  24:Src/encoder3.c ****     *pdistanceparcourue_gauche+=6*rayonroue/(Encval_gauche/*TIM2->CNT/nb_tick_tour*/)/2;
+ 137              		.loc 1 24 5 is_stmt 1 view .LVU29
+ 138              		.loc 1 24 44 is_stmt 0 view .LVU30
+ 139 0024 0098     		ldr	r0, [sp]
+ 140 0026 91FBF0F1 		sdiv	r1, r1, r0
+ 141              		.loc 1 24 86 view .LVU31
+ 142 002a 01EBD171 		add	r1, r1, r1, lsr #31
+ 143              		.loc 1 24 31 view .LVU32
+ 144 002e 1868     		ldr	r0, [r3]
+ 145 0030 00EB6101 		add	r1, r0, r1, asr #1
+ 146 0034 1960     		str	r1, [r3]
+  25:Src/encoder3.c **** 
+  26:Src/encoder3.c ****     return(*pdistanceparcourue_droite);
+ 147              		.loc 1 26 5 is_stmt 1 view .LVU33
+  27:Src/encoder3.c **** }
+ARM GAS  /tmp/ccegb7yK.s 			page 4
+
+
+ 148              		.loc 1 27 1 is_stmt 0 view .LVU34
+ 149 0036 1068     		ldr	r0, [r2]
+ 150 0038 03B0     		add	sp, sp, #12
+ 151              	.LCFI4:
+ 152              		.cfi_def_cfa_offset 4
+ 153              		@ sp needed
+ 154 003a 5DF8044B 		ldr	r4, [sp], #4
+ 155              	.LCFI5:
+ 156              		.cfi_restore 4
+ 157              		.cfi_def_cfa_offset 0
+ 158 003e 7047     		bx	lr
+ 159              		.cfi_endproc
+ 160              	.LFE127:
+ 162              		.global	__aeabi_i2d
+ 163              		.global	__aeabi_dmul
+ 164              		.global	__aeabi_dadd
+ 165              		.global	__aeabi_d2iz
+ 166              		.section	.text.mise_a_jour_x_y,"ax",%progbits
+ 167              		.align	1
+ 168              		.global	mise_a_jour_x_y
+ 169              		.syntax unified
+ 170              		.thumb
+ 171              		.thumb_func
+ 172              		.fpu fpv4-sp-d16
+ 174              	mise_a_jour_x_y:
+ 175              	.LVL9:
+ 176              	.LFB128:
+  28:Src/encoder3.c **** 
+  29:Src/encoder3.c **** void mise_a_jour_x_y(int* px,int* py,int* ptheta,int* moy_prev,unsigned int *pdistanceparcourue_dro
+ 177              		.loc 1 29 144 is_stmt 1 view -0
+ 178              		.cfi_startproc
+ 179              		@ args = 8, pretend = 0, frame = 0
+ 180              		@ frame_needed = 0, uses_anonymous_args = 0
+ 181              		.loc 1 29 144 is_stmt 0 view .LVU36
+ 182 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 183              	.LCFI6:
+ 184              		.cfi_def_cfa_offset 32
+ 185              		.cfi_offset 4, -32
+ 186              		.cfi_offset 5, -28
+ 187              		.cfi_offset 6, -24
+ 188              		.cfi_offset 7, -20
+ 189              		.cfi_offset 8, -16
+ 190              		.cfi_offset 9, -12
+ 191              		.cfi_offset 10, -8
+ 192              		.cfi_offset 14, -4
+ 193 0004 8246     		mov	r10, r0
+ 194 0006 0C46     		mov	r4, r1
+ 195 0008 1546     		mov	r5, r2
+  30:Src/encoder3.c ****     int moy_diff=(*pdistanceparcourue_droite+*pdistanceparcourue_gauche)/2-*moy_prev;
+ 196              		.loc 1 30 5 is_stmt 1 view .LVU37
+ 197              		.loc 1 30 19 is_stmt 0 view .LVU38
+ 198 000a 089A     		ldr	r2, [sp, #32]
+ 199              	.LVL10:
+ 200              		.loc 1 30 19 view .LVU39
+ 201 000c 1268     		ldr	r2, [r2]
+ 202              		.loc 1 30 46 view .LVU40
+ 203 000e 0999     		ldr	r1, [sp, #36]
+ARM GAS  /tmp/ccegb7yK.s 			page 5
+
+
+ 204              	.LVL11:
+ 205              		.loc 1 30 46 view .LVU41
+ 206 0010 0868     		ldr	r0, [r1]
+ 207              	.LVL12:
+ 208              		.loc 1 30 45 view .LVU42
+ 209 0012 0244     		add	r2, r2, r0
+ 210              		.loc 1 30 76 view .LVU43
+ 211 0014 1868     		ldr	r0, [r3]
+ 212              	.LVL13:
+  31:Src/encoder3.c ****     *px+=moy_diff*cos(*ptheta);
+ 213              		.loc 1 31 5 is_stmt 1 view .LVU44
+ 214              		.loc 1 31 18 is_stmt 0 view .LVU45
+ 215 0016 C0EB5200 		rsb	r0, r0, r2, lsr #1
+ 216              	.LVL14:
+ 217              		.loc 1 31 18 view .LVU46
+ 218 001a FFF7FEFF 		bl	__aeabi_i2d
+ 219              	.LVL15:
+ 220              		.loc 1 31 18 view .LVU47
+ 221 001e 0646     		mov	r6, r0
+ 222 0020 0F46     		mov	r7, r1
+ 223              		.loc 1 31 19 view .LVU48
+ 224 0022 2868     		ldr	r0, [r5]
+ 225 0024 FFF7FEFF 		bl	__aeabi_i2d
+ 226              	.LVL16:
+ 227 0028 41EC100B 		vmov	d0, r0, r1
+ 228 002c FFF7FEFF 		bl	cos
+ 229              	.LVL17:
+ 230 0030 53EC102B 		vmov	r2, r3, d0
+ 231              		.loc 1 31 18 view .LVU49
+ 232 0034 3046     		mov	r0, r6
+ 233 0036 3946     		mov	r1, r7
+ 234 0038 FFF7FEFF 		bl	__aeabi_dmul
+ 235              	.LVL18:
+ 236 003c 8046     		mov	r8, r0
+ 237 003e 8946     		mov	r9, r1
+ 238              		.loc 1 31 8 view .LVU50
+ 239 0040 DAF80000 		ldr	r0, [r10]
+ 240 0044 FFF7FEFF 		bl	__aeabi_i2d
+ 241              	.LVL19:
+ 242 0048 4246     		mov	r2, r8
+ 243 004a 4B46     		mov	r3, r9
+ 244 004c FFF7FEFF 		bl	__aeabi_dadd
+ 245              	.LVL20:
+ 246 0050 FFF7FEFF 		bl	__aeabi_d2iz
+ 247              	.LVL21:
+ 248 0054 CAF80000 		str	r0, [r10]
+  32:Src/encoder3.c ****     *py+=moy_diff*sin(*ptheta);
+ 249              		.loc 1 32 5 is_stmt 1 view .LVU51
+ 250              		.loc 1 32 19 is_stmt 0 view .LVU52
+ 251 0058 2868     		ldr	r0, [r5]
+ 252 005a FFF7FEFF 		bl	__aeabi_i2d
+ 253              	.LVL22:
+ 254 005e 41EC100B 		vmov	d0, r0, r1
+ 255 0062 FFF7FEFF 		bl	sin
+ 256              	.LVL23:
+ 257 0066 53EC102B 		vmov	r2, r3, d0
+ 258              		.loc 1 32 18 view .LVU53
+ARM GAS  /tmp/ccegb7yK.s 			page 6
+
+
+ 259 006a 3046     		mov	r0, r6
+ 260 006c 3946     		mov	r1, r7
+ 261 006e FFF7FEFF 		bl	__aeabi_dmul
+ 262              	.LVL24:
+ 263 0072 0646     		mov	r6, r0
+ 264 0074 0F46     		mov	r7, r1
+ 265              		.loc 1 32 8 view .LVU54
+ 266 0076 2068     		ldr	r0, [r4]
+ 267 0078 FFF7FEFF 		bl	__aeabi_i2d
+ 268              	.LVL25:
+ 269 007c 3246     		mov	r2, r6
+ 270 007e 3B46     		mov	r3, r7
+ 271 0080 FFF7FEFF 		bl	__aeabi_dadd
+ 272              	.LVL26:
+ 273 0084 FFF7FEFF 		bl	__aeabi_d2iz
+ 274              	.LVL27:
+ 275 0088 2060     		str	r0, [r4]
+  33:Src/encoder3.c **** }
+ 276              		.loc 1 33 1 view .LVU55
+ 277 008a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 278              		.loc 1 33 1 view .LVU56
+ 279              		.cfi_endproc
+ 280              	.LFE128:
+ 282              		.section	.text.consigne,"ax",%progbits
+ 283              		.align	1
+ 284              		.global	consigne
+ 285              		.syntax unified
+ 286              		.thumb
+ 287              		.thumb_func
+ 288              		.fpu fpv4-sp-d16
+ 290              	consigne:
+ 291              	.LVL28:
+ 292              	.LFB129:
+  34:Src/encoder3.c **** 
+  35:Src/encoder3.c **** void consigne(int epsilon,int objectif_x,int objectif_y,int* px,int* py,int* pconsigne_gauche,int* 
+ 293              		.loc 1 35 129 is_stmt 1 view -0
+ 294              		.cfi_startproc
+ 295              		@ args = 16, pretend = 0, frame = 0
+ 296              		@ frame_needed = 0, uses_anonymous_args = 0
+ 297              		.loc 1 35 129 is_stmt 0 view .LVU58
+ 298 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 299              	.LCFI7:
+ 300              		.cfi_def_cfa_offset 32
+ 301              		.cfi_offset 3, -32
+ 302              		.cfi_offset 4, -28
+ 303              		.cfi_offset 5, -24
+ 304              		.cfi_offset 6, -20
+ 305              		.cfi_offset 7, -16
+ 306              		.cfi_offset 8, -12
+ 307              		.cfi_offset 9, -8
+ 308              		.cfi_offset 14, -4
+ 309 0004 099F     		ldr	r7, [sp, #36]
+ 310 0006 0A9E     		ldr	r6, [sp, #40]
+  36:Src/encoder3.c ****     int alpha=1;
+ 311              		.loc 1 36 5 is_stmt 1 view .LVU59
+ 312              	.LVL29:
+  37:Src/encoder3.c ****     int beta=100;
+ARM GAS  /tmp/ccegb7yK.s 			page 7
+
+
+ 313              		.loc 1 37 5 view .LVU60
+  38:Src/encoder3.c ****     int erreur_x=objectif_x-*px;
+ 314              		.loc 1 38 5 view .LVU61
+ 315              		.loc 1 38 29 is_stmt 0 view .LVU62
+ 316 0008 1C68     		ldr	r4, [r3]
+ 317              		.loc 1 38 9 view .LVU63
+ 318 000a 0C1B     		subs	r4, r1, r4
+ 319              	.LVL30:
+  39:Src/encoder3.c ****     int erreur_y=objectif_y-*py;
+ 320              		.loc 1 39 5 is_stmt 1 view .LVU64
+ 321              		.loc 1 39 29 is_stmt 0 view .LVU65
+ 322 000c 089B     		ldr	r3, [sp, #32]
+ 323              	.LVL31:
+ 324              		.loc 1 39 29 view .LVU66
+ 325 000e 1D68     		ldr	r5, [r3]
+ 326              		.loc 1 39 9 view .LVU67
+ 327 0010 551B     		subs	r5, r2, r5
+ 328              	.LVL32:
+  40:Src/encoder3.c ****     int erreur_theta=atan(erreur_y/erreur_x)*10;//-*ptheta;
+ 329              		.loc 1 40 5 is_stmt 1 view .LVU68
+ 330              		.loc 1 40 22 is_stmt 0 view .LVU69
+ 331 0012 95FBF4F0 		sdiv	r0, r5, r4
+ 332              	.LVL33:
+ 333              		.loc 1 40 22 view .LVU70
+ 334 0016 FFF7FEFF 		bl	__aeabi_i2d
+ 335              	.LVL34:
+ 336              		.loc 1 40 22 view .LVU71
+ 337 001a 41EC100B 		vmov	d0, r0, r1
+ 338 001e FFF7FEFF 		bl	atan
+ 339              	.LVL35:
+ 340 0022 51EC100B 		vmov	r0, r1, d0
+ 341              		.loc 1 40 45 view .LVU72
+ 342 0026 0022     		movs	r2, #0
+ 343 0028 194B     		ldr	r3, .L13
+ 344 002a FFF7FEFF 		bl	__aeabi_dmul
+ 345              	.LVL36:
+ 346              		.loc 1 40 9 view .LVU73
+ 347 002e FFF7FEFF 		bl	__aeabi_d2iz
+ 348              	.LVL37:
+  41:Src/encoder3.c ****     int consigne_theta=-(erreur_theta)*alpha; /*-*ptheta*/
+ 349              		.loc 1 41 5 is_stmt 1 view .LVU74
+  42:Src/encoder3.c ****     int consigne_rho_carre=(erreur_x*erreur_x+erreur_y*erreur_y)*10;
+ 350              		.loc 1 42 5 view .LVU75
+ 351              		.loc 1 42 55 is_stmt 0 view .LVU76
+ 352 0032 05FB05F5 		mul	r5, r5, r5
+ 353              	.LVL38:
+ 354              		.loc 1 42 46 view .LVU77
+ 355 0036 04FB0454 		mla	r4, r4, r4, r5
+ 356              	.LVL39:
+ 357              		.loc 1 42 9 view .LVU78
+ 358 003a 04EB8405 		add	r5, r4, r4, lsl #2
+ 359              	.LVL40:
+  43:Src/encoder3.c ****     
+  44:Src/encoder3.c ****     if (consigne_theta>0.2 || consigne_theta<-0.2){
+ 360              		.loc 1 44 5 is_stmt 1 view .LVU79
+ 361              		.loc 1 44 8 is_stmt 0 view .LVU80
+ 362 003e F8B1     		cbz	r0, .L10
+ARM GAS  /tmp/ccegb7yK.s 			page 8
+
+
+ 363 0040 4042     		rsbs	r0, r0, #0
+ 364              	.LVL41:
+ 365              		.loc 1 44 8 view .LVU81
+ 366 0042 6D00     		lsls	r5, r5, #1
+ 367              	.LVL42:
+  45:Src/encoder3.c ****       *pconsigne_gauche=consigne_rho_carre*sin(consigne_theta);
+ 368              		.loc 1 45 7 is_stmt 1 view .LVU82
+ 369              		.loc 1 45 44 is_stmt 0 view .LVU83
+ 370 0044 FFF7FEFF 		bl	__aeabi_i2d
+ 371              	.LVL43:
+ 372              		.loc 1 45 44 view .LVU84
+ 373 0048 41EC100B 		vmov	d0, r0, r1
+ 374 004c FFF7FEFF 		bl	sin
+ 375              	.LVL44:
+ 376 0050 59EC108B 		vmov	r8, r9, d0
+ 377              		.loc 1 45 43 view .LVU85
+ 378 0054 2846     		mov	r0, r5
+ 379 0056 FFF7FEFF 		bl	__aeabi_i2d
+ 380              	.LVL45:
+ 381 005a 4246     		mov	r2, r8
+ 382 005c 4B46     		mov	r3, r9
+ 383 005e FFF7FEFF 		bl	__aeabi_dmul
+ 384              	.LVL46:
+ 385              		.loc 1 45 24 view .LVU86
+ 386 0062 FFF7FEFF 		bl	__aeabi_d2iz
+ 387              	.LVL47:
+ 388 0066 3860     		str	r0, [r7]
+  46:Src/encoder3.c ****       *pconsigne_droite=-consigne_rho_carre*sin(consigne_theta);
+ 389              		.loc 1 46 7 is_stmt 1 view .LVU87
+ 390              		.loc 1 46 44 is_stmt 0 view .LVU88
+ 391 0068 6842     		rsbs	r0, r5, #0
+ 392 006a FFF7FEFF 		bl	__aeabi_i2d
+ 393              	.LVL48:
+ 394 006e 4246     		mov	r2, r8
+ 395 0070 4B46     		mov	r3, r9
+ 396 0072 FFF7FEFF 		bl	__aeabi_dmul
+ 397              	.LVL49:
+ 398              		.loc 1 46 24 view .LVU89
+ 399 0076 FFF7FEFF 		bl	__aeabi_d2iz
+ 400              	.LVL50:
+ 401 007a 3060     		str	r0, [r6]
+ 402              	.LVL51:
+ 403              	.L9:
+  47:Src/encoder3.c **** 
+  48:Src/encoder3.c ****     }
+  49:Src/encoder3.c ****     else{
+  50:Src/encoder3.c ****       *pconsigne_gauche=beta*consigne_rho_carre;
+  51:Src/encoder3.c ****       *pconsigne_droite=beta*consigne_rho_carre;
+  52:Src/encoder3.c ****     }
+  53:Src/encoder3.c ****     
+  54:Src/encoder3.c ****     
+  55:Src/encoder3.c **** }
+ 404              		.loc 1 55 1 view .LVU90
+ 405 007c BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 406              	.LVL52:
+ 407              	.L10:
+  50:Src/encoder3.c ****       *pconsigne_droite=beta*consigne_rho_carre;
+ARM GAS  /tmp/ccegb7yK.s 			page 9
+
+
+ 408              		.loc 1 50 7 is_stmt 1 view .LVU91
+  50:Src/encoder3.c ****       *pconsigne_droite=beta*consigne_rho_carre;
+ 409              		.loc 1 50 29 is_stmt 0 view .LVU92
+ 410 0080 4FF47A75 		mov	r5, #1000
+ 411              	.LVL53:
+  50:Src/encoder3.c ****       *pconsigne_droite=beta*consigne_rho_carre;
+ 412              		.loc 1 50 29 view .LVU93
+ 413 0084 05FB04F4 		mul	r4, r5, r4
+ 414              	.LVL54:
+  50:Src/encoder3.c ****       *pconsigne_droite=beta*consigne_rho_carre;
+ 415              		.loc 1 50 24 view .LVU94
+ 416 0088 3C60     		str	r4, [r7]
+  51:Src/encoder3.c ****     }
+ 417              		.loc 1 51 7 is_stmt 1 view .LVU95
+  51:Src/encoder3.c ****     }
+ 418              		.loc 1 51 24 is_stmt 0 view .LVU96
+ 419 008a 3460     		str	r4, [r6]
+ 420              		.loc 1 55 1 view .LVU97
+ 421 008c F6E7     		b	.L9
+ 422              	.L14:
+ 423 008e 00BF     		.align	2
+ 424              	.L13:
+ 425 0090 00002440 		.word	1076101120
+ 426              		.cfi_endproc
+ 427              	.LFE129:
+ 429              		.section	.text.commande_moteur,"ax",%progbits
+ 430              		.align	1
+ 431              		.global	commande_moteur
+ 432              		.syntax unified
+ 433              		.thumb
+ 434              		.thumb_func
+ 435              		.fpu fpv4-sp-d16
+ 437              	commande_moteur:
+ 438              	.LVL55:
+ 439              	.LFB130:
+  56:Src/encoder3.c **** 
+  57:Src/encoder3.c **** void commande_moteur(int* pconsigne_gauche,int* pconsigne_droite){
+ 440              		.loc 1 57 66 is_stmt 1 view -0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 0
+ 443              		@ frame_needed = 0, uses_anonymous_args = 0
+ 444              		@ link register save eliminated.
+  58:Src/encoder3.c **** 
+  59:Src/encoder3.c ****     if(*pconsigne_gauche<0){
+ 445              		.loc 1 59 5 view .LVU99
+ 446              		.loc 1 59 8 is_stmt 0 view .LVU100
+ 447 0000 0368     		ldr	r3, [r0]
+ 448              		.loc 1 59 7 view .LVU101
+ 449 0002 002B     		cmp	r3, #0
+ 450 0004 13DB     		blt	.L20
+ 451              	.L16:
+  60:Src/encoder3.c ****       htim3.Instance->CCR3 = 0; 
+  61:Src/encoder3.c ****       htim3.Instance->CCR4 = -*pconsigne_gauche; 
+  62:Src/encoder3.c ****     }
+  63:Src/encoder3.c ****     if(*pconsigne_gauche>0){
+ 452              		.loc 1 63 5 is_stmt 1 view .LVU102
+ 453              		.loc 1 63 8 is_stmt 0 view .LVU103
+ARM GAS  /tmp/ccegb7yK.s 			page 10
+
+
+ 454 0006 0368     		ldr	r3, [r0]
+ 455              		.loc 1 63 7 view .LVU104
+ 456 0008 002B     		cmp	r3, #0
+ 457 000a 04DD     		ble	.L17
+  64:Src/encoder3.c ****       htim3.Instance->CCR3 =*pconsigne_gauche;
+ 458              		.loc 1 64 7 is_stmt 1 view .LVU105
+ 459              		.loc 1 64 12 is_stmt 0 view .LVU106
+ 460 000c 0F4A     		ldr	r2, .L22
+ 461 000e 1268     		ldr	r2, [r2]
+ 462              		.loc 1 64 28 view .LVU107
+ 463 0010 D363     		str	r3, [r2, #60]
+  65:Src/encoder3.c ****       htim3.Instance->CCR4 =0;
+ 464              		.loc 1 65 7 is_stmt 1 view .LVU108
+ 465              		.loc 1 65 28 is_stmt 0 view .LVU109
+ 466 0012 0023     		movs	r3, #0
+ 467 0014 1364     		str	r3, [r2, #64]
+ 468              	.L17:
+  66:Src/encoder3.c ****     }
+  67:Src/encoder3.c ****     
+  68:Src/encoder3.c ****     if(*pconsigne_droite>0){
+ 469              		.loc 1 68 5 is_stmt 1 view .LVU110
+ 470              		.loc 1 68 8 is_stmt 0 view .LVU111
+ 471 0016 0B68     		ldr	r3, [r1]
+ 472              		.loc 1 68 7 view .LVU112
+ 473 0018 002B     		cmp	r3, #0
+ 474 001a 04DD     		ble	.L18
+  69:Src/encoder3.c ****       htim3.Instance->CCR1 =*pconsigne_droite;
+ 475              		.loc 1 69 7 is_stmt 1 view .LVU113
+ 476              		.loc 1 69 12 is_stmt 0 view .LVU114
+ 477 001c 0B4A     		ldr	r2, .L22
+ 478 001e 1268     		ldr	r2, [r2]
+ 479              		.loc 1 69 28 view .LVU115
+ 480 0020 5363     		str	r3, [r2, #52]
+  70:Src/encoder3.c ****       htim3.Instance->CCR2 =0;
+ 481              		.loc 1 70 7 is_stmt 1 view .LVU116
+ 482              		.loc 1 70 28 is_stmt 0 view .LVU117
+ 483 0022 0023     		movs	r3, #0
+ 484 0024 9363     		str	r3, [r2, #56]
+ 485              	.L18:
+  71:Src/encoder3.c ****     }
+  72:Src/encoder3.c ****     if(*pconsigne_droite<0){
+ 486              		.loc 1 72 5 is_stmt 1 view .LVU118
+ 487              		.loc 1 72 8 is_stmt 0 view .LVU119
+ 488 0026 0B68     		ldr	r3, [r1]
+ 489              		.loc 1 72 7 view .LVU120
+ 490 0028 002B     		cmp	r3, #0
+ 491 002a 08DB     		blt	.L21
+ 492              	.L15:
+  73:Src/encoder3.c ****       htim3.Instance->CCR2 = -*pconsigne_droite;
+  74:Src/encoder3.c ****       htim3.Instance->CCR1 = 0;
+  75:Src/encoder3.c ****     }
+  76:Src/encoder3.c ****     
+  77:Src/encoder3.c **** }
+ 493              		.loc 1 77 1 view .LVU121
+ 494 002c 7047     		bx	lr
+ 495              	.L20:
+  60:Src/encoder3.c ****       htim3.Instance->CCR4 = -*pconsigne_gauche; 
+ARM GAS  /tmp/ccegb7yK.s 			page 11
+
+
+ 496              		.loc 1 60 7 is_stmt 1 view .LVU122
+  60:Src/encoder3.c ****       htim3.Instance->CCR4 = -*pconsigne_gauche; 
+ 497              		.loc 1 60 12 is_stmt 0 view .LVU123
+ 498 002e 074B     		ldr	r3, .L22
+ 499 0030 1A68     		ldr	r2, [r3]
+  60:Src/encoder3.c ****       htim3.Instance->CCR4 = -*pconsigne_gauche; 
+ 500              		.loc 1 60 28 view .LVU124
+ 501 0032 0023     		movs	r3, #0
+ 502 0034 D363     		str	r3, [r2, #60]
+  61:Src/encoder3.c ****     }
+ 503              		.loc 1 61 7 is_stmt 1 view .LVU125
+  61:Src/encoder3.c ****     }
+ 504              		.loc 1 61 31 is_stmt 0 view .LVU126
+ 505 0036 0368     		ldr	r3, [r0]
+  61:Src/encoder3.c ****     }
+ 506              		.loc 1 61 30 view .LVU127
+ 507 0038 5B42     		rsbs	r3, r3, #0
+  61:Src/encoder3.c ****     }
+ 508              		.loc 1 61 28 view .LVU128
+ 509 003a 1364     		str	r3, [r2, #64]
+ 510 003c E3E7     		b	.L16
+ 511              	.L21:
+  73:Src/encoder3.c ****       htim3.Instance->CCR2 = -*pconsigne_droite;
+ 512              		.loc 1 73 7 is_stmt 1 view .LVU129
+  73:Src/encoder3.c ****       htim3.Instance->CCR2 = -*pconsigne_droite;
+ 513              		.loc 1 73 12 is_stmt 0 view .LVU130
+ 514 003e 034A     		ldr	r2, .L22
+ 515 0040 1268     		ldr	r2, [r2]
+  73:Src/encoder3.c ****       htim3.Instance->CCR2 = -*pconsigne_droite;
+ 516              		.loc 1 73 30 view .LVU131
+ 517 0042 5B42     		rsbs	r3, r3, #0
+  73:Src/encoder3.c ****       htim3.Instance->CCR2 = -*pconsigne_droite;
+ 518              		.loc 1 73 28 view .LVU132
+ 519 0044 9363     		str	r3, [r2, #56]
+  74:Src/encoder3.c ****     }
+ 520              		.loc 1 74 7 is_stmt 1 view .LVU133
+  74:Src/encoder3.c ****     }
+ 521              		.loc 1 74 28 is_stmt 0 view .LVU134
+ 522 0046 0023     		movs	r3, #0
+ 523 0048 5363     		str	r3, [r2, #52]
+ 524              		.loc 1 77 1 view .LVU135
+ 525 004a EFE7     		b	.L15
+ 526              	.L23:
+ 527              		.align	2
+ 528              	.L22:
+ 529 004c 00000000 		.word	htim3
+ 530              		.cfi_endproc
+ 531              	.LFE130:
+ 533              		.section	.text.init,"ax",%progbits
+ 534              		.align	1
+ 535              		.global	init
+ 536              		.syntax unified
+ 537              		.thumb
+ 538              		.thumb_func
+ 539              		.fpu fpv4-sp-d16
+ 541              	init:
+ 542              	.LVL56:
+ARM GAS  /tmp/ccegb7yK.s 			page 12
+
+
+ 543              	.LFB131:
+  78:Src/encoder3.c **** 
+  79:Src/encoder3.c **** 
+  80:Src/encoder3.c **** void init(Encoder* encoder_droite,Encoder* encoder_gauche,int nbpoint,int epsilon,Point* cap,int* p
+  81:Src/encoder3.c ****   unsigned int* pdistanceparcourue_droite,unsigned int* pdistanceparcourue_gauche,int* px,int* py,i
+ 544              		.loc 1 81 157 is_stmt 1 view -0
+ 545              		.cfi_startproc
+ 546              		@ args = 44, pretend = 0, frame = 0
+ 547              		@ frame_needed = 0, uses_anonymous_args = 0
+ 548              		.loc 1 81 157 is_stmt 0 view .LVU137
+ 549 0000 38B5     		push	{r3, r4, r5, lr}
+ 550              	.LCFI8:
+ 551              		.cfi_def_cfa_offset 16
+ 552              		.cfi_offset 3, -16
+ 553              		.cfi_offset 4, -12
+ 554              		.cfi_offset 5, -8
+ 555              		.cfi_offset 14, -4
+ 556 0002 0546     		mov	r5, r0
+  82:Src/encoder3.c ****     distance_encoder=32;
+ 557              		.loc 1 82 5 is_stmt 1 view .LVU138
+ 558              		.loc 1 82 21 is_stmt 0 view .LVU139
+ 559 0004 0E4B     		ldr	r3, .L26
+ 560              	.LVL57:
+ 561              		.loc 1 82 21 view .LVU140
+ 562 0006 2022     		movs	r2, #32
+ 563              	.LVL58:
+ 564              		.loc 1 82 21 view .LVU141
+ 565 0008 1A60     		str	r2, [r3]
+  83:Src/encoder3.c ****     *pdistanceparcourue_droite=0;
+ 566              		.loc 1 83 5 is_stmt 1 view .LVU142
+ 567              		.loc 1 83 31 is_stmt 0 view .LVU143
+ 568 000a 0024     		movs	r4, #0
+ 569 000c 089B     		ldr	r3, [sp, #32]
+ 570 000e 1C60     		str	r4, [r3]
+  84:Src/encoder3.c ****     *pdistanceparcourue_gauche=0;
+ 571              		.loc 1 84 5 is_stmt 1 view .LVU144
+ 572              		.loc 1 84 31 is_stmt 0 view .LVU145
+ 573 0010 099B     		ldr	r3, [sp, #36]
+ 574 0012 1C60     		str	r4, [r3]
+  85:Src/encoder3.c ****     *px=0;//temporaire, préférable d'inscrire la position où on place le robot initialement
+ 575              		.loc 1 85 5 is_stmt 1 view .LVU146
+ 576              		.loc 1 85 8 is_stmt 0 view .LVU147
+ 577 0014 0A9B     		ldr	r3, [sp, #40]
+ 578 0016 1C60     		str	r4, [r3]
+  86:Src/encoder3.c ****     *py=0;//temporaire, idem
+ 579              		.loc 1 86 5 is_stmt 1 view .LVU148
+ 580              		.loc 1 86 8 is_stmt 0 view .LVU149
+ 581 0018 0B9B     		ldr	r3, [sp, #44]
+ 582 001a 1C60     		str	r4, [r3]
+  87:Src/encoder3.c ****     moy_prev=0;
+ 583              		.loc 1 87 5 is_stmt 1 view .LVU150
+ 584              	.LVL59:
+  88:Src/encoder3.c ****     *pconsigne_gauche=255;
+ 585              		.loc 1 88 5 view .LVU151
+ 586              		.loc 1 88 22 is_stmt 0 view .LVU152
+ 587 001c FF23     		movs	r3, #255
+ 588 001e 0D9A     		ldr	r2, [sp, #52]
+ARM GAS  /tmp/ccegb7yK.s 			page 13
+
+
+ 589 0020 1360     		str	r3, [r2]
+  89:Src/encoder3.c ****     *pconsigne_droite=255;
+ 590              		.loc 1 89 5 is_stmt 1 view .LVU153
+ 591              		.loc 1 89 22 is_stmt 0 view .LVU154
+ 592 0022 0E9A     		ldr	r2, [sp, #56]
+ 593 0024 1360     		str	r3, [r2]
+  90:Src/encoder3.c ****     nbpoint=5;
+ 594              		.loc 1 90 5 is_stmt 1 view .LVU155
+ 595              	.LVL60:
+  91:Src/encoder3.c ****     cap=calloc(nbpoint,sizeof(Point*));
+ 596              		.loc 1 91 5 view .LVU156
+ 597              		.loc 1 91 9 is_stmt 0 view .LVU157
+ 598 0026 0421     		movs	r1, #4
+ 599              	.LVL61:
+ 600              		.loc 1 91 9 view .LVU158
+ 601 0028 0520     		movs	r0, #5
+ 602              	.LVL62:
+ 603              		.loc 1 91 9 view .LVU159
+ 604 002a FFF7FEFF 		bl	calloc
+ 605              	.LVL63:
+  92:Src/encoder3.c ****     epsilon=5;
+ 606              		.loc 1 92 5 is_stmt 1 view .LVU160
+  93:Src/encoder3.c ****     cap->x=65;
+ 607              		.loc 1 93 5 view .LVU161
+ 608              		.loc 1 93 11 is_stmt 0 view .LVU162
+ 609 002e 4123     		movs	r3, #65
+ 610 0030 0360     		str	r3, [r0]
+  94:Src/encoder3.c ****     cap->y=0;
+ 611              		.loc 1 94 5 is_stmt 1 view .LVU163
+ 612              		.loc 1 94 11 is_stmt 0 view .LVU164
+ 613 0032 4460     		str	r4, [r0, #4]
+  95:Src/encoder3.c ****     init_encoder(encoder_droite , &htim2);
+ 614              		.loc 1 95 5 is_stmt 1 view .LVU165
+ 615 0034 0349     		ldr	r1, .L26+4
+ 616 0036 2846     		mov	r0, r5
+ 617              	.LVL64:
+ 618              		.loc 1 95 5 is_stmt 0 view .LVU166
+ 619 0038 FFF7FEFF 		bl	init_encoder
+ 620              	.LVL65:
+  96:Src/encoder3.c ****     /*
+  97:Src/encoder3.c ****     int i;
+  98:Src/encoder3.c ****     for(i=0;i<nbpoint;i++){
+  99:Src/encoder3.c ****         printf("premier point\n");
+ 100:Src/encoder3.c ****         scanf("x %d\n",&(cap+i)->x);
+ 101:Src/encoder3.c ****         scanf("y %d\n",&(cap+i)->y);
+ 102:Src/encoder3.c ****     }*/
+ 103:Src/encoder3.c **** 
+ 104:Src/encoder3.c ****     //list des coordonnées: abscisses puis ordonnée
+ 105:Src/encoder3.c **** }
+ 621              		.loc 1 105 1 view .LVU167
+ 622 003c 38BD     		pop	{r3, r4, r5, pc}
+ 623              	.LVL66:
+ 624              	.L27:
+ 625              		.loc 1 105 1 view .LVU168
+ 626 003e 00BF     		.align	2
+ 627              	.L26:
+ 628 0040 00000000 		.word	distance_encoder
+ARM GAS  /tmp/ccegb7yK.s 			page 14
+
+
+ 629 0044 00000000 		.word	htim2
+ 630              		.cfi_endproc
+ 631              	.LFE131:
+ 633              		.section	.text.navigation,"ax",%progbits
+ 634              		.align	1
+ 635              		.global	navigation
+ 636              		.syntax unified
+ 637              		.thumb
+ 638              		.thumb_func
+ 639              		.fpu fpv4-sp-d16
+ 641              	navigation:
+ 642              	.LVL67:
+ 643              	.LFB132:
+ 106:Src/encoder3.c **** 
+ 107:Src/encoder3.c **** void navigation(Encoder* encoder_gauche,Encoder* encoder_droite,int nbpoint,int epsilon,Point* cap,
+ 108:Src/encoder3.c ****   unsigned int* pdistanceparcourue_gauche,int* px,int* py,int* moy_prev,int* pconsigne_gauche,int* 
+ 644              		.loc 1 108 117 is_stmt 1 view -0
+ 645              		.cfi_startproc
+ 646              		@ args = 44, pretend = 0, frame = 8
+ 647              		@ frame_needed = 0, uses_anonymous_args = 0
+ 648              		.loc 1 108 117 is_stmt 0 view .LVU170
+ 649 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 650              	.LCFI9:
+ 651              		.cfi_def_cfa_offset 36
+ 652              		.cfi_offset 4, -36
+ 653              		.cfi_offset 5, -32
+ 654              		.cfi_offset 6, -28
+ 655              		.cfi_offset 7, -24
+ 656              		.cfi_offset 8, -20
+ 657              		.cfi_offset 9, -16
+ 658              		.cfi_offset 10, -12
+ 659              		.cfi_offset 11, -8
+ 660              		.cfi_offset 14, -4
+ 661 0004 87B0     		sub	sp, sp, #28
+ 662              	.LCFI10:
+ 663              		.cfi_def_cfa_offset 64
+ 664 0006 0546     		mov	r5, r0
+ 665 0008 0C46     		mov	r4, r1
+ 666 000a 0592     		str	r2, [sp, #20]
+ 667 000c 9946     		mov	r9, r3
+ 668 000e DDF84480 		ldr	r8, [sp, #68]
+ 669 0012 169F     		ldr	r7, [sp, #88]
+ 109:Src/encoder3.c ****     int i=0;
+ 670              		.loc 1 109 5 is_stmt 1 view .LVU171
+ 671              	.LVL68:
+ 110:Src/encoder3.c ****     int erreur_x=255;
+ 672              		.loc 1 110 5 view .LVU172
+ 111:Src/encoder3.c ****     int erreur_y=255;
+ 673              		.loc 1 111 5 view .LVU173
+ 112:Src/encoder3.c ****     int objectif_x;
+ 674              		.loc 1 112 5 view .LVU174
+ 113:Src/encoder3.c ****     int objectif_y;
+ 675              		.loc 1 113 5 view .LVU175
+ 114:Src/encoder3.c ****     for(i=0;i<nbpoint;i++){
+ 676              		.loc 1 114 5 view .LVU176
+ 111:Src/encoder3.c ****     int objectif_x;
+ 677              		.loc 1 111 9 is_stmt 0 view .LVU177
+ARM GAS  /tmp/ccegb7yK.s 			page 15
+
+
+ 678 0014 FF22     		movs	r2, #255
+ 679              	.LVL69:
+ 110:Src/encoder3.c ****     int erreur_y=255;
+ 680              		.loc 1 110 9 view .LVU178
+ 681 0016 1346     		mov	r3, r2
+ 682              	.LVL70:
+ 683              		.loc 1 114 10 view .LVU179
+ 684 0018 0021     		movs	r1, #0
+ 685              	.LVL71:
+ 686              		.loc 1 114 10 view .LVU180
+ 687 001a 0491     		str	r1, [sp, #16]
+ 688 001c 4646     		mov	r6, r8
+ 689 001e DDF85C80 		ldr	r8, [sp, #92]
+ 690              		.loc 1 114 5 view .LVU181
+ 691 0022 3AE0     		b	.L29
+ 692              	.LVL72:
+ 693              	.L31:
+ 115:Src/encoder3.c ****       objectif_x=(cap+i)->x;
+ 116:Src/encoder3.c ****       objectif_y=(cap+i)->y;
+ 117:Src/encoder3.c **** 
+ 118:Src/encoder3.c ****       while(epsilon>erreur_x || epsilon>erreur_y){
+ 119:Src/encoder3.c **** 
+ 120:Src/encoder3.c ****         update_encoder(encoder_gauche);
+ 694              		.loc 1 120 9 is_stmt 1 view .LVU182
+ 695 0024 2846     		mov	r0, r5
+ 696 0026 FFF7FEFF 		bl	update_encoder
+ 697              	.LVL73:
+ 121:Src/encoder3.c ****         update_encoder(encoder_droite);
+ 698              		.loc 1 121 9 view .LVU183
+ 699 002a 2046     		mov	r0, r4
+ 700 002c FFF7FEFF 		bl	update_encoder
+ 701              	.LVL74:
+ 122:Src/encoder3.c ****         theta(ptheta,encoder_droite->steps,encoder_gauche->steps,32);
+ 702              		.loc 1 122 9 view .LVU184
+ 703 0030 6168     		ldr	r1, [r4, #4]
+ 704 0032 6A68     		ldr	r2, [r5, #4]
+ 705 0034 2023     		movs	r3, #32
+ 706 0036 3046     		mov	r0, r6
+ 707 0038 FFF7FEFF 		bl	theta
+ 708              	.LVL75:
+ 123:Src/encoder3.c ****         mise_a_jour_distance( encoder_droite,encoder_gauche,pdistanceparcourue_droite,pdistanceparc
+ 709              		.loc 1 123 9 view .LVU185
+ 710 003c 159B     		ldr	r3, [sp, #84]
+ 711 003e 149A     		ldr	r2, [sp, #80]
+ 712 0040 2946     		mov	r1, r5
+ 713 0042 2046     		mov	r0, r4
+ 714 0044 FFF7FEFF 		bl	mise_a_jour_distance
+ 715              	.LVL76:
+ 124:Src/encoder3.c ****         mise_a_jour_x_y(px,py,ptheta,moy_prev,pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 716              		.loc 1 124 9 view .LVU186
+ 717 0048 159B     		ldr	r3, [sp, #84]
+ 718 004a 0193     		str	r3, [sp, #4]
+ 719 004c 149B     		ldr	r3, [sp, #80]
+ 720 004e 0093     		str	r3, [sp]
+ 721 0050 189B     		ldr	r3, [sp, #96]
+ 722 0052 3246     		mov	r2, r6
+ 723 0054 4146     		mov	r1, r8
+ARM GAS  /tmp/ccegb7yK.s 			page 16
+
+
+ 724 0056 3846     		mov	r0, r7
+ 725 0058 FFF7FEFF 		bl	mise_a_jour_x_y
+ 726              	.LVL77:
+ 125:Src/encoder3.c ****         consigne(epsilon,objectif_x,objectif_y,px,py,pconsigne_gauche,pconsigne_droite,ptheta);
+ 727              		.loc 1 125 9 view .LVU187
+ 728 005c 0396     		str	r6, [sp, #12]
+ 729 005e 1A9B     		ldr	r3, [sp, #104]
+ 730 0060 0293     		str	r3, [sp, #8]
+ 731 0062 199B     		ldr	r3, [sp, #100]
+ 732 0064 0193     		str	r3, [sp, #4]
+ 733 0066 CDF80080 		str	r8, [sp]
+ 734 006a 3B46     		mov	r3, r7
+ 735 006c 5246     		mov	r2, r10
+ 736 006e 5946     		mov	r1, fp
+ 737 0070 4846     		mov	r0, r9
+ 738 0072 FFF7FEFF 		bl	consigne
+ 739              	.LVL78:
+ 126:Src/encoder3.c ****         /*
+ 127:Src/encoder3.c ****         *pconsigne_gauche=120;
+ 128:Src/encoder3.c ****         *pconsigne_droite=120;
+ 129:Src/encoder3.c ****         */
+ 130:Src/encoder3.c ****         commande_moteur(pconsigne_gauche,pconsigne_droite);
+ 740              		.loc 1 130 9 view .LVU188
+ 741 0076 1A99     		ldr	r1, [sp, #104]
+ 742 0078 1998     		ldr	r0, [sp, #100]
+ 743 007a FFF7FEFF 		bl	commande_moteur
+ 744              	.LVL79:
+ 131:Src/encoder3.c ****         erreur_x=*px-objectif_x;
+ 745              		.loc 1 131 9 view .LVU189
+ 746              		.loc 1 131 18 is_stmt 0 view .LVU190
+ 747 007e 3B68     		ldr	r3, [r7]
+ 748              		.loc 1 131 17 view .LVU191
+ 749 0080 A3EB0B03 		sub	r3, r3, fp
+ 750              	.LVL80:
+ 132:Src/encoder3.c ****         erreur_y=*py-objectif_y;
+ 751              		.loc 1 132 9 is_stmt 1 view .LVU192
+ 752              		.loc 1 132 18 is_stmt 0 view .LVU193
+ 753 0084 D8F80020 		ldr	r2, [r8]
+ 754              		.loc 1 132 17 view .LVU194
+ 755 0088 A2EB0A02 		sub	r2, r2, r10
+ 756              	.LVL81:
+ 757              	.L30:
+ 118:Src/encoder3.c **** 
+ 758              		.loc 1 118 12 view .LVU195
+ 759 008c 4B45     		cmp	r3, r9
+ 760 008e C9DB     		blt	.L31
+ 118:Src/encoder3.c **** 
+ 761              		.loc 1 118 30 discriminator 1 view .LVU196
+ 762 0090 4A45     		cmp	r2, r9
+ 763 0092 C7DB     		blt	.L31
+ 114:Src/encoder3.c ****       objectif_x=(cap+i)->x;
+ 764              		.loc 1 114 24 discriminator 2 view .LVU197
+ 765 0094 0499     		ldr	r1, [sp, #16]
+ 766 0096 0131     		adds	r1, r1, #1
+ 767 0098 0491     		str	r1, [sp, #16]
+ 768              	.LVL82:
+ 769              	.L29:
+ARM GAS  /tmp/ccegb7yK.s 			page 17
+
+
+ 114:Src/encoder3.c ****       objectif_x=(cap+i)->x;
+ 770              		.loc 1 114 5 discriminator 1 view .LVU198
+ 771 009a 0499     		ldr	r1, [sp, #16]
+ 772 009c 0598     		ldr	r0, [sp, #20]
+ 773 009e 8142     		cmp	r1, r0
+ 774 00a0 09DA     		bge	.L34
+ 115:Src/encoder3.c ****       objectif_y=(cap+i)->y;
+ 775              		.loc 1 115 7 is_stmt 1 view .LVU199
+ 115:Src/encoder3.c ****       objectif_y=(cap+i)->y;
+ 776              		.loc 1 115 22 is_stmt 0 view .LVU200
+ 777 00a2 1099     		ldr	r1, [sp, #64]
+ 778 00a4 0498     		ldr	r0, [sp, #16]
+ 779 00a6 01EBC00C 		add	ip, r1, r0, lsl #3
+ 115:Src/encoder3.c ****       objectif_y=(cap+i)->y;
+ 780              		.loc 1 115 17 view .LVU201
+ 781 00aa 1099     		ldr	r1, [sp, #64]
+ 782 00ac 51F830B0 		ldr	fp, [r1, r0, lsl #3]
+ 783              	.LVL83:
+ 116:Src/encoder3.c **** 
+ 784              		.loc 1 116 7 is_stmt 1 view .LVU202
+ 116:Src/encoder3.c **** 
+ 785              		.loc 1 116 17 is_stmt 0 view .LVU203
+ 786 00b0 DCF804A0 		ldr	r10, [ip, #4]
+ 787              	.LVL84:
+ 118:Src/encoder3.c **** 
+ 788              		.loc 1 118 7 is_stmt 1 view .LVU204
+ 118:Src/encoder3.c **** 
+ 789              		.loc 1 118 12 is_stmt 0 view .LVU205
+ 790 00b4 EAE7     		b	.L30
+ 791              	.LVL85:
+ 792              	.L34:
+ 133:Src/encoder3.c **** 
+ 134:Src/encoder3.c ****     }
+ 135:Src/encoder3.c ****   }
+ 136:Src/encoder3.c **** 
+ 137:Src/encoder3.c **** }
+ 793              		.loc 1 137 1 view .LVU206
+ 794 00b6 07B0     		add	sp, sp, #28
+ 795              	.LCFI11:
+ 796              		.cfi_def_cfa_offset 36
+ 797              		@ sp needed
+ 798 00b8 BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 799              		.loc 1 137 1 view .LVU207
+ 800              		.cfi_endproc
+ 801              	.LFE132:
+ 803              		.comm	epsilon,4,4
+ 804              		.comm	nbpoint,4,4
+ 805              		.comm	cap,4,4
+ 806              		.comm	pconsigne_droite,4,4
+ 807              		.comm	pconsigne_gauche,4,4
+ 808              		.comm	moy_prev,4,4
+ 809              		.comm	py,4,4
+ 810              		.comm	px,4,4
+ 811              		.comm	pdistanceparcourue_gauche,4,4
+ 812              		.comm	pdistanceparcourue_droite,4,4
+ 813              		.comm	cnt_gauche,4,4
+ 814              		.comm	cnt_droite,4,4
+ARM GAS  /tmp/ccegb7yK.s 			page 18
+
+
+ 815              		.comm	objectif_y,4,4
+ 816              		.comm	objectif_x,4,4
+ 817              		.comm	distance_encoder,4,4
+ 818              		.comm	ptheta,4,4
+ 819              		.comm	encoder_gauche,4,4
+ 820              		.comm	encoder_droit,4,4
+ 821              		.text
+ 822              	.Letext0:
+ 823              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 824              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 825              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 826              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 827              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 828              		.file 7 "/usr/arm-none-eabi/include/sys/lock.h"
+ 829              		.file 8 "/usr/arm-none-eabi/include/sys/_types.h"
+ 830              		.file 9 "/usr/lib/gcc/arm-none-eabi/9.1.0/include/stddef.h"
+ 831              		.file 10 "/usr/arm-none-eabi/include/sys/reent.h"
+ 832              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 833              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 834              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 835              		.file 14 "Inc/vincent.h"
+ 836              		.file 15 "Inc/encoder3.h"
+ 837              		.file 16 "/usr/arm-none-eabi/include/math.h"
+ 838              		.file 17 "/usr/arm-none-eabi/include/stdlib.h"
+ 839              		.file 18 "Inc/tim.h"
+ARM GAS  /tmp/ccegb7yK.s 			page 19
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 encoder3.c
+     /tmp/ccegb7yK.s:18     .text.theta:0000000000000000 $t
+     /tmp/ccegb7yK.s:26     .text.theta:0000000000000000 theta
+     /tmp/ccegb7yK.s:81     .text.theta:000000000000003c $d
+     /tmp/ccegb7yK.s:86     .text.mise_a_jour_distance:0000000000000000 $t
+     /tmp/ccegb7yK.s:93     .text.mise_a_jour_distance:0000000000000000 mise_a_jour_distance
+     /tmp/ccegb7yK.s:167    .text.mise_a_jour_x_y:0000000000000000 $t
+     /tmp/ccegb7yK.s:174    .text.mise_a_jour_x_y:0000000000000000 mise_a_jour_x_y
+     /tmp/ccegb7yK.s:283    .text.consigne:0000000000000000 $t
+     /tmp/ccegb7yK.s:290    .text.consigne:0000000000000000 consigne
+     /tmp/ccegb7yK.s:425    .text.consigne:0000000000000090 $d
+     /tmp/ccegb7yK.s:430    .text.commande_moteur:0000000000000000 $t
+     /tmp/ccegb7yK.s:437    .text.commande_moteur:0000000000000000 commande_moteur
+     /tmp/ccegb7yK.s:529    .text.commande_moteur:000000000000004c $d
+     /tmp/ccegb7yK.s:534    .text.init:0000000000000000 $t
+     /tmp/ccegb7yK.s:541    .text.init:0000000000000000 init
+     /tmp/ccegb7yK.s:628    .text.init:0000000000000040 $d
+                            *COM*:0000000000000004 distance_encoder
+     /tmp/ccegb7yK.s:634    .text.navigation:0000000000000000 $t
+     /tmp/ccegb7yK.s:641    .text.navigation:0000000000000000 navigation
+                            *COM*:0000000000000004 epsilon
+                            *COM*:0000000000000004 nbpoint
+                            *COM*:0000000000000004 cap
+                            *COM*:0000000000000004 pconsigne_droite
+                            *COM*:0000000000000004 pconsigne_gauche
+                            *COM*:0000000000000004 moy_prev
+                            *COM*:0000000000000004 py
+                            *COM*:0000000000000004 px
+                            *COM*:0000000000000004 pdistanceparcourue_gauche
+                            *COM*:0000000000000004 pdistanceparcourue_droite
+                            *COM*:0000000000000004 cnt_gauche
+                            *COM*:0000000000000004 cnt_droite
+                            *COM*:0000000000000004 objectif_y
+                            *COM*:0000000000000004 objectif_x
+                            *COM*:0000000000000004 ptheta
+                            *COM*:0000000000000004 encoder_gauche
+                            *COM*:0000000000000004 encoder_droit
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_d2iz
+cos
+sin
+atan
+htim3
+calloc
+init_encoder
+htim2
+update_encoder

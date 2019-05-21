@@ -1,0 +1,816 @@
+ARM GAS  /tmp/ccgJWgAv.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.SystemClock_Config,"ax",%progbits
+  18              		.align	1
+  19              		.global	SystemClock_Config
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	SystemClock_Config:
+  27              	.LFB127:
+  28              		.file 1 "Src/main.c"
+   1:Src/main.c    **** /* USER CODE BEGIN Header */
+   2:Src/main.c    **** /**
+   3:Src/main.c    ****   ******************************************************************************
+   4:Src/main.c    ****   * @file           : main.c
+   5:Src/main.c    ****   * @brief          : Main program body
+   6:Src/main.c    ****   ******************************************************************************
+   7:Src/main.c    ****   ** This notice applies to any and all portions of this file
+   8:Src/main.c    ****   * that are not between comment pairs USER CODE BEGIN and
+   9:Src/main.c    ****   * USER CODE END. Other portions of this file, whether 
+  10:Src/main.c    ****   * inserted by the user or by software development tools
+  11:Src/main.c    ****   * are owned by their respective copyright owners.
+  12:Src/main.c    ****   *
+  13:Src/main.c    ****   * COPYRIGHT(c) 2019 STMicroelectronics
+  14:Src/main.c    ****   *
+  15:Src/main.c    ****   * Redistribution and use in source and binary forms, with or without modification,
+  16:Src/main.c    ****   * are permitted provided that the following conditions are met:
+  17:Src/main.c    ****   *   1. Redistributions of source code must retain the above copyright notice,
+  18:Src/main.c    ****   *      this list of conditions and the following disclaimer.
+  19:Src/main.c    ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  20:Src/main.c    ****   *      this list of conditions and the following disclaimer in the documentation
+  21:Src/main.c    ****   *      and/or other materials provided with the distribution.
+  22:Src/main.c    ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  23:Src/main.c    ****   *      may be used to endorse or promote products derived from this software
+  24:Src/main.c    ****   *      without specific prior written permission.
+  25:Src/main.c    ****   *
+  26:Src/main.c    ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  27:Src/main.c    ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  28:Src/main.c    ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  29:Src/main.c    ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  30:Src/main.c    ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ARM GAS  /tmp/ccgJWgAv.s 			page 2
+
+
+  31:Src/main.c    ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  32:Src/main.c    ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  33:Src/main.c    ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  34:Src/main.c    ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  35:Src/main.c    ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  36:Src/main.c    ****   *
+  37:Src/main.c    ****   ******************************************************************************
+  38:Src/main.c    ****   */
+  39:Src/main.c    **** /* USER CODE END Header */
+  40:Src/main.c    **** 
+  41:Src/main.c    **** /* Includes ------------------------------------------------------------------*/
+  42:Src/main.c    **** #include "main.h"
+  43:Src/main.c    **** #include "tim.h"
+  44:Src/main.c    **** #include "usart.h"
+  45:Src/main.c    **** #include "gpio.h"
+  46:Src/main.c    **** #include "encoder.h"
+  47:Src/main.c    **** /* Private includes ----------------------------------------------------------*/
+  48:Src/main.c    **** /* USER CODE BEGIN Includes */
+  49:Src/main.c    **** #include "stm32f4xx_hal.h"
+  50:Src/main.c    **** 
+  51:Src/main.c    **** /* USER CODE END Includes */
+  52:Src/main.c    **** 
+  53:Src/main.c    **** /* Private typedef -----------------------------------------------------------*/
+  54:Src/main.c    **** /* USER CODE BEGIN PTD */
+  55:Src/main.c    **** 
+  56:Src/main.c    **** /* USER CODE END PTD */
+  57:Src/main.c    **** 
+  58:Src/main.c    **** /* Private define ------------------------------------------------------------*/
+  59:Src/main.c    **** /* USER CODE BEGIN PD */
+  60:Src/main.c    **** 
+  61:Src/main.c    **** /* USER CODE END PD */
+  62:Src/main.c    **** 
+  63:Src/main.c    **** /* Private macro -------------------------------------------------------------*/
+  64:Src/main.c    **** /* USER CODE BEGIN PM */
+  65:Src/main.c    **** 
+  66:Src/main.c    **** /* USER CODE END PM */
+  67:Src/main.c    **** 
+  68:Src/main.c    **** /* Private variables ---------------------------------------------------------*/
+  69:Src/main.c    **** 
+  70:Src/main.c    **** /* USER CODE BEGIN PV */
+  71:Src/main.c    **** 
+  72:Src/main.c    **** /* USER CODE END PV */
+  73:Src/main.c    **** 
+  74:Src/main.c    **** /* Private function prototypes -----------------------------------------------*/
+  75:Src/main.c    **** void SystemClock_Config(void);
+  76:Src/main.c    **** /* USER CODE BEGIN PFP */
+  77:Src/main.c    **** 
+  78:Src/main.c    **** /* USER CODE END PFP */
+  79:Src/main.c    **** 
+  80:Src/main.c    **** /* Private user code ---------------------------------------------------------*/
+  81:Src/main.c    **** /* USER CODE BEGIN 0 */
+  82:Src/main.c    **** 
+  83:Src/main.c    **** /* USER CODE END 0 */
+  84:Src/main.c    **** 
+  85:Src/main.c    **** /**
+  86:Src/main.c    ****   * @brief  The application entry point.
+  87:Src/main.c    ****   * @retval int
+ARM GAS  /tmp/ccgJWgAv.s 			page 3
+
+
+  88:Src/main.c    ****   */
+  89:Src/main.c    **** int main(void)
+  90:Src/main.c    **** {
+  91:Src/main.c    ****   /* USER CODE BEGIN 1 */
+  92:Src/main.c    **** 
+  93:Src/main.c    ****   /* USER CODE END 1 */
+  94:Src/main.c    **** 
+  95:Src/main.c    ****   /* MCU Configuration--------------------------------------------------------*/
+  96:Src/main.c    **** 
+  97:Src/main.c    ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  98:Src/main.c    ****   HAL_Init();
+  99:Src/main.c    **** 
+ 100:Src/main.c    ****   /* USER CODE BEGIN Init */
+ 101:Src/main.c    **** 
+ 102:Src/main.c    ****   /* USER CODE END Init */
+ 103:Src/main.c    **** 
+ 104:Src/main.c    ****   /* Configure the system clock */
+ 105:Src/main.c    ****   SystemClock_Config();
+ 106:Src/main.c    **** 
+ 107:Src/main.c    ****   /* USER CODE BEGIN SysInit */
+ 108:Src/main.c    **** 
+ 109:Src/main.c    ****   /* USER CODE END SysInit */
+ 110:Src/main.c    **** 
+ 111:Src/main.c    ****   /* Initialize all configured peripherals */
+ 112:Src/main.c    ****   MX_GPIO_Init();
+ 113:Src/main.c    ****   MX_TIM3_Init();
+ 114:Src/main.c    ****   MX_TIM2_Init();
+ 115:Src/main.c    ****   MX_USART2_Init();
+ 116:Src/main.c    ****   MX_TIM5_Init();
+ 117:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 118:Src/main.c    ****   HAL_TIM_Base_Start(&htim3);
+ 119:Src/main.c    ****   HAL_TIM_Base_Start(&htim5);
+ 120:Src/main.c    ****   HAL_TIM_Base_Start(&htim2);
+ 121:Src/main.c    ****   HAL_TIM_Base_Start_IT(&htim2);
+ 122:Src/main.c    ****   HAL_TIM_Base_Start_IT(&htim5);
+ 123:Src/main.c    **** 	HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_1);
+ 124:Src/main.c    **** 	HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_2);
+ 125:Src/main.c    ****   HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_3);
+ 126:Src/main.c    **** 	HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_4);
+ 127:Src/main.c    ****   //distance_encoder=10;
+ 128:Src/main.c    **** 
+ 129:Src/main.c    **** /*
+ 130:Src/main.c    **** void navigation(asservissement* asserv,parametre* cstes){
+ 131:Src/main.c    ****     int i=0;
+ 132:Src/main.c    ****     (asserv->perreur)->x=255;
+ 133:Src/main.c    ****     (asserv->perreur)->y=255;
+ 134:Src/main.c    ****     
+ 135:Src/main.c    ****     *(asserv->pconsigne->gauche)=255;
+ 136:Src/main.c    ****     *(asserv->pconsigne->droite)=255;
+ 137:Src/main.c    ****     commande_moteur((asserv->pconsigne->gauche),(asserv->pconsigne->droite));
+ 138:Src/main.c    **** }
+ 139:Src/main.c    **** */
+ 140:Src/main.c    ****   //void init(int nbpoint,int epsilon,Point* cap,int* ptheta,unsigned int* cnt_droite,
+ 141:Src/main.c    **** //  unsigned int* cnt_gauche,unsigned int* pdistanceparcourue_droite,unsigned int* pdistanceparcour
+ 142:Src/main.c    ****   /* USER CODE END 2 */
+ 143:Src/main.c    **** 
+ 144:Src/main.c    ****   /* Infinite loop */
+ARM GAS  /tmp/ccgJWgAv.s 			page 4
+
+
+ 145:Src/main.c    ****   /* USER CODE BEGIN WHILE */
+ 146:Src/main.c    ****   while (1)
+ 147:Src/main.c    ****   {
+ 148:Src/main.c    ****        // htim3.Instance->CCR1 = 160;
+ 149:Src/main.c    ****       //htim3.Instance->CCR2 = 0;
+ 150:Src/main.c    ****       //htim3.Instance->CCR3 = 130;
+ 151:Src/main.c    ****       //htim3.Instance->CCR4 = 0;
+ 152:Src/main.c    ****      /**pconsigne_droite=120;
+ 153:Src/main.c    ****      *pconsigne_gauche=120;
+ 154:Src/main.c    ****      commande_moteur(pconsigne_gauche,pconsigne_droite);*///commande des moteurs fonctionne
+ 155:Src/main.c    ****     *px=0;
+ 156:Src/main.c    ****     *py=0;
+ 157:Src/main.c    ****     consigne(0.1,200,0,px,py,pconsigne_gauche,pconsigne_droite,0);
+ 158:Src/main.c    ****     commande_moteur(pconsigne_gauche,pconsigne_droite);
+ 159:Src/main.c    ****     printf(" %ld \n",(&htim2)->Instance->CNT);
+ 160:Src/main.c    ****     printf(" %ld \n",(&htim5)->Instance->CNT);
+ 161:Src/main.c    ****     theta(ptheta,cnt_droite,cnt_gauche,distance_encoder);
+ 162:Src/main.c    ****     mise_a_jour_distance(pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 163:Src/main.c    ****     mise_a_jour_x_y(px,py,ptheta,moy_prev,pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 164:Src/main.c    ****     /*
+ 165:Src/main.c    ****    
+ 166:Src/main.c    ****     */
+ 167:Src/main.c    ****     ///*
+ 168:Src/main.c    ****     //commande_moteur((asserv->pconsigne->gauche),(asserv->pconsigne->droite));
+ 169:Src/main.c    ****     //*/
+ 170:Src/main.c    ****     //navigation(nbpoint,epsilon,cap,ptheta,cnt_droite, cnt_gauche, pdistanceparcourue_droite,pdist
+ 171:Src/main.c    **** 
+ 172:Src/main.c    ****     //    navigation(asserv,cstes);
+ 173:Src/main.c    ****   
+ 174:Src/main.c    ****    
+ 175:Src/main.c    **** /*
+ 176:Src/main.c    ****   int i=0;
+ 177:Src/main.c    ****   int erreur_x=255;
+ 178:Src/main.c    ****   int erreur_y=255;
+ 179:Src/main.c    ****   int objectif_x=20;
+ 180:Src/main.c    ****   int objectif_y=20;
+ 181:Src/main.c    **** /*  for(i=0;i<nbpoint;i++){
+ 182:Src/main.c    ****     objectif_x=(cap+i)->x;
+ 183:Src/main.c    ****     objectif_y=(cap+i)->y;
+ 184:Src/main.c    **** */
+ 185:Src/main.c    ****   //  while(epsilon<erreur_x || epsilon<erreur_y){
+ 186:Src/main.c    **** //*//*
+ 187:Src/main.c    **** /*
+ 188:Src/main.c    ****       theta(ptheta,cnt_droite,cnt_gauche,distance_encoder);
+ 189:Src/main.c    ****       mise_a_jour_distance(pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 190:Src/main.c    ****       mise_a_jour_x_y(px,py,ptheta,moy_prev,pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 191:Src/main.c    **** 
+ 192:Src/main.c    ****       consigne(epsilon,objectif_x,objectif_y,px,py,pconsigne_gauche,pconsigne_droite,ptheta);
+ 193:Src/main.c    ****     
+ 194:Src/main.c    ****       //*pconsigne_gauche=120;
+ 195:Src/main.c    ****       //*pconsigne_droite=120;
+ 196:Src/main.c    ****      /* if (*px>0.001){*/
+ 197:Src/main.c    **** /*      commande_moteur(pconsigne_gauche,pconsigne_droite);
+ 198:Src/main.c    ****       erreur_x=*px-objectif_x;
+ 199:Src/main.c    ****       erreur_y=*py-objectif_y;
+ 200:Src/main.c    ****     /*}
+ 201:Src/main.c    ****     else{
+ARM GAS  /tmp/ccgJWgAv.s 			page 5
+
+
+ 202:Src/main.c    ****       htim3.Instance->CCR1 = 0;
+ 203:Src/main.c    ****       htim3.Instance->CCR2 = 0;
+ 204:Src/main.c    ****       htim3.Instance->CCR3 = 0;
+ 205:Src/main.c    ****       htim3.Instance->CCR4 = 0;
+ 206:Src/main.c    ****     }}*/
+ 207:Src/main.c    ****     }
+ 208:Src/main.c    ****   }
+ 209:Src/main.c    **** 
+ 210:Src/main.c    **** 
+ 211:Src/main.c    ****   
+ 212:Src/main.c    ****     /* USER CODE END WHILE */
+ 213:Src/main.c    **** 
+ 214:Src/main.c    ****     /* USER CODE BEGIN 3 */
+ 215:Src/main.c    ****   
+ 216:Src/main.c    ****   /* USER CODE END 3 */
+ 217:Src/main.c    **** 
+ 218:Src/main.c    **** 
+ 219:Src/main.c    **** /**
+ 220:Src/main.c    ****   * @brief System Clock Configuration
+ 221:Src/main.c    ****   * @retval None
+ 222:Src/main.c    ****   */
+ 223:Src/main.c    **** void SystemClock_Config(void)
+ 224:Src/main.c    **** {
+  29              		.loc 1 224 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 80
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 30B5     		push	{r4, r5, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  39 0002 95B0     		sub	sp, sp, #84
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 96
+ 225:Src/main.c    ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  42              		.loc 1 225 3 view .LVU1
+  43              		.loc 1 225 22 is_stmt 0 view .LVU2
+  44 0004 3022     		movs	r2, #48
+  45 0006 0021     		movs	r1, #0
+  46 0008 08A8     		add	r0, sp, #32
+  47 000a FFF7FEFF 		bl	memset
+  48              	.LVL0:
+ 226:Src/main.c    ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  49              		.loc 1 226 3 is_stmt 1 view .LVU3
+  50              		.loc 1 226 22 is_stmt 0 view .LVU4
+  51 000e 0024     		movs	r4, #0
+  52 0010 0394     		str	r4, [sp, #12]
+  53 0012 0494     		str	r4, [sp, #16]
+  54 0014 0594     		str	r4, [sp, #20]
+  55 0016 0694     		str	r4, [sp, #24]
+  56 0018 0794     		str	r4, [sp, #28]
+ 227:Src/main.c    **** 
+ 228:Src/main.c    ****   /**Configure the main internal regulator output voltage 
+ 229:Src/main.c    ****   */
+ 230:Src/main.c    ****   __HAL_RCC_PWR_CLK_ENABLE();
+ARM GAS  /tmp/ccgJWgAv.s 			page 6
+
+
+  57              		.loc 1 230 3 is_stmt 1 view .LVU5
+  58              	.LBB2:
+  59              		.loc 1 230 3 view .LVU6
+  60 001a 0194     		str	r4, [sp, #4]
+  61              		.loc 1 230 3 view .LVU7
+  62 001c 1B4B     		ldr	r3, .L3
+  63 001e 1A6C     		ldr	r2, [r3, #64]
+  64 0020 42F08052 		orr	r2, r2, #268435456
+  65 0024 1A64     		str	r2, [r3, #64]
+  66              		.loc 1 230 3 view .LVU8
+  67 0026 1B6C     		ldr	r3, [r3, #64]
+  68 0028 03F08053 		and	r3, r3, #268435456
+  69 002c 0193     		str	r3, [sp, #4]
+  70              		.loc 1 230 3 view .LVU9
+  71 002e 019B     		ldr	r3, [sp, #4]
+  72              	.LBE2:
+ 231:Src/main.c    ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  73              		.loc 1 231 3 view .LVU10
+  74              	.LBB3:
+  75              		.loc 1 231 3 view .LVU11
+  76 0030 0294     		str	r4, [sp, #8]
+  77              		.loc 1 231 3 view .LVU12
+  78 0032 174A     		ldr	r2, .L3+4
+  79 0034 1368     		ldr	r3, [r2]
+  80 0036 23F44043 		bic	r3, r3, #49152
+  81 003a 43F40043 		orr	r3, r3, #32768
+  82 003e 1360     		str	r3, [r2]
+  83              		.loc 1 231 3 view .LVU13
+  84 0040 1368     		ldr	r3, [r2]
+  85 0042 03F44043 		and	r3, r3, #49152
+  86 0046 0293     		str	r3, [sp, #8]
+  87              		.loc 1 231 3 view .LVU14
+  88 0048 029B     		ldr	r3, [sp, #8]
+  89              	.LBE3:
+ 232:Src/main.c    ****   /**Initializes the CPU, AHB and APB busses clocks 
+ 233:Src/main.c    ****   */
+ 234:Src/main.c    ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  90              		.loc 1 234 3 view .LVU15
+  91              		.loc 1 234 36 is_stmt 0 view .LVU16
+  92 004a 0225     		movs	r5, #2
+  93 004c 0895     		str	r5, [sp, #32]
+ 235:Src/main.c    ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  94              		.loc 1 235 3 is_stmt 1 view .LVU17
+  95              		.loc 1 235 30 is_stmt 0 view .LVU18
+  96 004e 0123     		movs	r3, #1
+  97 0050 0B93     		str	r3, [sp, #44]
+ 236:Src/main.c    ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  98              		.loc 1 236 3 is_stmt 1 view .LVU19
+  99              		.loc 1 236 41 is_stmt 0 view .LVU20
+ 100 0052 1023     		movs	r3, #16
+ 101 0054 0C93     		str	r3, [sp, #48]
+ 237:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 102              		.loc 1 237 3 is_stmt 1 view .LVU21
+ 103              		.loc 1 237 34 is_stmt 0 view .LVU22
+ 104 0056 0E95     		str	r5, [sp, #56]
+ 238:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+ 105              		.loc 1 238 3 is_stmt 1 view .LVU23
+ARM GAS  /tmp/ccgJWgAv.s 			page 7
+
+
+ 106              		.loc 1 238 35 is_stmt 0 view .LVU24
+ 107 0058 0F94     		str	r4, [sp, #60]
+ 239:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLM = 8;
+ 108              		.loc 1 239 3 is_stmt 1 view .LVU25
+ 109              		.loc 1 239 30 is_stmt 0 view .LVU26
+ 110 005a 0823     		movs	r3, #8
+ 111 005c 1093     		str	r3, [sp, #64]
+ 240:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLN = 84;
+ 112              		.loc 1 240 3 is_stmt 1 view .LVU27
+ 113              		.loc 1 240 30 is_stmt 0 view .LVU28
+ 114 005e 5423     		movs	r3, #84
+ 115 0060 1193     		str	r3, [sp, #68]
+ 241:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 116              		.loc 1 241 3 is_stmt 1 view .LVU29
+ 117              		.loc 1 241 30 is_stmt 0 view .LVU30
+ 118 0062 1295     		str	r5, [sp, #72]
+ 242:Src/main.c    ****   RCC_OscInitStruct.PLL.PLLQ = 4;
+ 119              		.loc 1 242 3 is_stmt 1 view .LVU31
+ 120              		.loc 1 242 30 is_stmt 0 view .LVU32
+ 121 0064 0423     		movs	r3, #4
+ 122 0066 1393     		str	r3, [sp, #76]
+ 243:Src/main.c    ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 123              		.loc 1 243 3 is_stmt 1 view .LVU33
+ 124              		.loc 1 243 7 is_stmt 0 view .LVU34
+ 125 0068 08A8     		add	r0, sp, #32
+ 126 006a FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 127              	.LVL1:
+ 244:Src/main.c    ****   {
+ 245:Src/main.c    ****     Error_Handler();
+ 246:Src/main.c    ****   }
+ 247:Src/main.c    ****   /**Initializes the CPU, AHB and APB busses clocks 
+ 248:Src/main.c    ****   */
+ 249:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 128              		.loc 1 249 3 is_stmt 1 view .LVU35
+ 129              		.loc 1 249 31 is_stmt 0 view .LVU36
+ 130 006e 0F23     		movs	r3, #15
+ 131 0070 0393     		str	r3, [sp, #12]
+ 250:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 251:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 132              		.loc 1 251 3 is_stmt 1 view .LVU37
+ 133              		.loc 1 251 34 is_stmt 0 view .LVU38
+ 134 0072 0495     		str	r5, [sp, #16]
+ 252:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 135              		.loc 1 252 3 is_stmt 1 view .LVU39
+ 136              		.loc 1 252 35 is_stmt 0 view .LVU40
+ 137 0074 0594     		str	r4, [sp, #20]
+ 253:Src/main.c    ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+ 138              		.loc 1 253 3 is_stmt 1 view .LVU41
+ 139              		.loc 1 253 36 is_stmt 0 view .LVU42
+ 140 0076 4FF48053 		mov	r3, #4096
+ 141 007a 0693     		str	r3, [sp, #24]
+ 254:Src/main.c    ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 142              		.loc 1 254 3 is_stmt 1 view .LVU43
+ 143              		.loc 1 254 36 is_stmt 0 view .LVU44
+ 144 007c 0794     		str	r4, [sp, #28]
+ 255:Src/main.c    **** 
+ 256:Src/main.c    ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+ARM GAS  /tmp/ccgJWgAv.s 			page 8
+
+
+ 145              		.loc 1 256 3 is_stmt 1 view .LVU45
+ 146              		.loc 1 256 7 is_stmt 0 view .LVU46
+ 147 007e 2946     		mov	r1, r5
+ 148 0080 03A8     		add	r0, sp, #12
+ 149 0082 FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 150              	.LVL2:
+ 257:Src/main.c    ****   {
+ 258:Src/main.c    ****     Error_Handler();
+ 259:Src/main.c    ****   }
+ 260:Src/main.c    **** }
+ 151              		.loc 1 260 1 view .LVU47
+ 152 0086 15B0     		add	sp, sp, #84
+ 153              	.LCFI2:
+ 154              		.cfi_def_cfa_offset 12
+ 155              		@ sp needed
+ 156 0088 30BD     		pop	{r4, r5, pc}
+ 157              	.L4:
+ 158 008a 00BF     		.align	2
+ 159              	.L3:
+ 160 008c 00380240 		.word	1073887232
+ 161 0090 00700040 		.word	1073770496
+ 162              		.cfi_endproc
+ 163              	.LFE127:
+ 165              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 166              		.align	2
+ 167              	.LC0:
+ 168 0000 20256C64 		.ascii	" %ld \012\000"
+ 168      200A00
+ 169              		.section	.text.main,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	main
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 175              		.fpu fpv4-sp-d16
+ 177              	main:
+ 178              	.LFB126:
+  90:Src/main.c    ****   /* USER CODE BEGIN 1 */
+ 179              		.loc 1 90 1 is_stmt 1 view -0
+ 180              		.cfi_startproc
+ 181              		@ Volatile: function does not return.
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 0, uses_anonymous_args = 0
+ 184 0000 80B5     		push	{r7, lr}
+ 185              	.LCFI3:
+ 186              		.cfi_def_cfa_offset 8
+ 187              		.cfi_offset 7, -8
+ 188              		.cfi_offset 14, -4
+ 189 0002 84B0     		sub	sp, sp, #16
+ 190              	.LCFI4:
+ 191              		.cfi_def_cfa_offset 24
+  98:Src/main.c    **** 
+ 192              		.loc 1 98 3 view .LVU49
+ 193 0004 FFF7FEFF 		bl	HAL_Init
+ 194              	.LVL3:
+ 105:Src/main.c    **** 
+ 195              		.loc 1 105 3 view .LVU50
+ARM GAS  /tmp/ccgJWgAv.s 			page 9
+
+
+ 196 0008 FFF7FEFF 		bl	SystemClock_Config
+ 197              	.LVL4:
+ 112:Src/main.c    ****   MX_TIM3_Init();
+ 198              		.loc 1 112 3 view .LVU51
+ 199 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 200              	.LVL5:
+ 113:Src/main.c    ****   MX_TIM2_Init();
+ 201              		.loc 1 113 3 view .LVU52
+ 202 0010 FFF7FEFF 		bl	MX_TIM3_Init
+ 203              	.LVL6:
+ 114:Src/main.c    ****   MX_USART2_Init();
+ 204              		.loc 1 114 3 view .LVU53
+ 205 0014 FFF7FEFF 		bl	MX_TIM2_Init
+ 206              	.LVL7:
+ 115:Src/main.c    ****   MX_TIM5_Init();
+ 207              		.loc 1 115 3 view .LVU54
+ 208 0018 FFF7FEFF 		bl	MX_USART2_Init
+ 209              	.LVL8:
+ 116:Src/main.c    ****   /* USER CODE BEGIN 2 */
+ 210              		.loc 1 116 3 view .LVU55
+ 211 001c FFF7FEFF 		bl	MX_TIM5_Init
+ 212              	.LVL9:
+ 118:Src/main.c    ****   HAL_TIM_Base_Start(&htim5);
+ 213              		.loc 1 118 3 view .LVU56
+ 214 0020 334C     		ldr	r4, .L8
+ 215 0022 2046     		mov	r0, r4
+ 216 0024 FFF7FEFF 		bl	HAL_TIM_Base_Start
+ 217              	.LVL10:
+ 119:Src/main.c    ****   HAL_TIM_Base_Start(&htim2);
+ 218              		.loc 1 119 3 view .LVU57
+ 219 0028 324D     		ldr	r5, .L8+4
+ 220 002a 2846     		mov	r0, r5
+ 221 002c FFF7FEFF 		bl	HAL_TIM_Base_Start
+ 222              	.LVL11:
+ 120:Src/main.c    ****   HAL_TIM_Base_Start_IT(&htim2);
+ 223              		.loc 1 120 3 view .LVU58
+ 224 0030 314E     		ldr	r6, .L8+8
+ 225 0032 3046     		mov	r0, r6
+ 226 0034 FFF7FEFF 		bl	HAL_TIM_Base_Start
+ 227              	.LVL12:
+ 121:Src/main.c    ****   HAL_TIM_Base_Start_IT(&htim5);
+ 228              		.loc 1 121 3 view .LVU59
+ 229 0038 3046     		mov	r0, r6
+ 230 003a FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 231              	.LVL13:
+ 122:Src/main.c    **** 	HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_1);
+ 232              		.loc 1 122 3 view .LVU60
+ 233 003e 2846     		mov	r0, r5
+ 234 0040 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 235              	.LVL14:
+ 123:Src/main.c    **** 	HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_2);
+ 236              		.loc 1 123 2 view .LVU61
+ 237 0044 0021     		movs	r1, #0
+ 238 0046 2046     		mov	r0, r4
+ 239 0048 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 240              	.LVL15:
+ 124:Src/main.c    ****   HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_3);
+ARM GAS  /tmp/ccgJWgAv.s 			page 10
+
+
+ 241              		.loc 1 124 2 view .LVU62
+ 242 004c 0421     		movs	r1, #4
+ 243 004e 2046     		mov	r0, r4
+ 244 0050 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 245              	.LVL16:
+ 125:Src/main.c    **** 	HAL_TIM_PWM_Start(& htim3, TIM_CHANNEL_4);
+ 246              		.loc 1 125 3 view .LVU63
+ 247 0054 0821     		movs	r1, #8
+ 248 0056 2046     		mov	r0, r4
+ 249 0058 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 250              	.LVL17:
+ 126:Src/main.c    ****   //distance_encoder=10;
+ 251              		.loc 1 126 2 view .LVU64
+ 252 005c 0C21     		movs	r1, #12
+ 253 005e 2046     		mov	r0, r4
+ 254 0060 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+ 255              	.LVL18:
+ 256              	.L6:
+ 146:Src/main.c    ****   {
+ 257              		.loc 1 146 3 discriminator 1 view .LVU65
+ 155:Src/main.c    ****     *py=0;
+ 258              		.loc 1 155 5 discriminator 1 view .LVU66
+ 259 0064 254C     		ldr	r4, .L8+12
+ 260 0066 2368     		ldr	r3, [r4]
+ 155:Src/main.c    ****     *py=0;
+ 261              		.loc 1 155 8 is_stmt 0 discriminator 1 view .LVU67
+ 262 0068 0020     		movs	r0, #0
+ 263 006a 1860     		str	r0, [r3]
+ 156:Src/main.c    ****     consigne(0.1,200,0,px,py,pconsigne_gauche,pconsigne_droite,0);
+ 264              		.loc 1 156 5 is_stmt 1 discriminator 1 view .LVU68
+ 265 006c 244D     		ldr	r5, .L8+16
+ 266 006e 2B68     		ldr	r3, [r5]
+ 156:Src/main.c    ****     consigne(0.1,200,0,px,py,pconsigne_gauche,pconsigne_droite,0);
+ 267              		.loc 1 156 8 is_stmt 0 discriminator 1 view .LVU69
+ 268 0070 1860     		str	r0, [r3]
+ 157:Src/main.c    ****     commande_moteur(pconsigne_gauche,pconsigne_droite);
+ 269              		.loc 1 157 5 is_stmt 1 discriminator 1 view .LVU70
+ 270 0072 0390     		str	r0, [sp, #12]
+ 271 0074 234F     		ldr	r7, .L8+20
+ 272 0076 3B68     		ldr	r3, [r7]
+ 273 0078 0293     		str	r3, [sp, #8]
+ 274 007a 234E     		ldr	r6, .L8+24
+ 275 007c 3368     		ldr	r3, [r6]
+ 276 007e 0193     		str	r3, [sp, #4]
+ 277 0080 2B68     		ldr	r3, [r5]
+ 278 0082 0093     		str	r3, [sp]
+ 279 0084 2368     		ldr	r3, [r4]
+ 280 0086 0246     		mov	r2, r0
+ 281 0088 C821     		movs	r1, #200
+ 282 008a FFF7FEFF 		bl	consigne
+ 283              	.LVL19:
+ 158:Src/main.c    ****     printf(" %ld \n",(&htim2)->Instance->CNT);
+ 284              		.loc 1 158 5 discriminator 1 view .LVU71
+ 285 008e 3968     		ldr	r1, [r7]
+ 286 0090 3068     		ldr	r0, [r6]
+ 287 0092 FFF7FEFF 		bl	commande_moteur
+ 288              	.LVL20:
+ARM GAS  /tmp/ccgJWgAv.s 			page 11
+
+
+ 159:Src/main.c    ****     printf(" %ld \n",(&htim5)->Instance->CNT);
+ 289              		.loc 1 159 5 discriminator 1 view .LVU72
+ 159:Src/main.c    ****     printf(" %ld \n",(&htim5)->Instance->CNT);
+ 290              		.loc 1 159 30 is_stmt 0 discriminator 1 view .LVU73
+ 291 0096 184B     		ldr	r3, .L8+8
+ 292 0098 1B68     		ldr	r3, [r3]
+ 159:Src/main.c    ****     printf(" %ld \n",(&htim5)->Instance->CNT);
+ 293              		.loc 1 159 5 discriminator 1 view .LVU74
+ 294 009a 596A     		ldr	r1, [r3, #36]
+ 295 009c 1B4E     		ldr	r6, .L8+28
+ 296 009e 3046     		mov	r0, r6
+ 297 00a0 FFF7FEFF 		bl	printf
+ 298              	.LVL21:
+ 160:Src/main.c    ****     theta(ptheta,cnt_droite,cnt_gauche,distance_encoder);
+ 299              		.loc 1 160 5 is_stmt 1 discriminator 1 view .LVU75
+ 160:Src/main.c    ****     theta(ptheta,cnt_droite,cnt_gauche,distance_encoder);
+ 300              		.loc 1 160 30 is_stmt 0 discriminator 1 view .LVU76
+ 301 00a4 134B     		ldr	r3, .L8+4
+ 302 00a6 1B68     		ldr	r3, [r3]
+ 160:Src/main.c    ****     theta(ptheta,cnt_droite,cnt_gauche,distance_encoder);
+ 303              		.loc 1 160 5 discriminator 1 view .LVU77
+ 304 00a8 596A     		ldr	r1, [r3, #36]
+ 305 00aa 3046     		mov	r0, r6
+ 306 00ac FFF7FEFF 		bl	printf
+ 307              	.LVL22:
+ 161:Src/main.c    ****     mise_a_jour_distance(pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 308              		.loc 1 161 5 is_stmt 1 discriminator 1 view .LVU78
+ 309 00b0 174E     		ldr	r6, .L8+32
+ 310 00b2 184B     		ldr	r3, .L8+36
+ 311 00b4 1B68     		ldr	r3, [r3]
+ 312 00b6 184A     		ldr	r2, .L8+40
+ 313 00b8 1268     		ldr	r2, [r2]
+ 314 00ba 1849     		ldr	r1, .L8+44
+ 315 00bc 0968     		ldr	r1, [r1]
+ 316 00be 3068     		ldr	r0, [r6]
+ 317 00c0 FFF7FEFF 		bl	theta
+ 318              	.LVL23:
+ 162:Src/main.c    ****     mise_a_jour_x_y(px,py,ptheta,moy_prev,pdistanceparcourue_droite,pdistanceparcourue_gauche);
+ 319              		.loc 1 162 5 discriminator 1 view .LVU79
+ 320 00c4 DFF86080 		ldr	r8, .L8+56
+ 321 00c8 154F     		ldr	r7, .L8+48
+ 322 00ca D8F80010 		ldr	r1, [r8]
+ 323 00ce 3868     		ldr	r0, [r7]
+ 324 00d0 FFF7FEFF 		bl	mise_a_jour_distance
+ 325              	.LVL24:
+ 163:Src/main.c    ****     /*
+ 326              		.loc 1 163 5 discriminator 1 view .LVU80
+ 327 00d4 D8F80030 		ldr	r3, [r8]
+ 328 00d8 0193     		str	r3, [sp, #4]
+ 329 00da 3B68     		ldr	r3, [r7]
+ 330 00dc 0093     		str	r3, [sp]
+ 331 00de 114B     		ldr	r3, .L8+52
+ 332 00e0 1B68     		ldr	r3, [r3]
+ 333 00e2 3268     		ldr	r2, [r6]
+ 334 00e4 2968     		ldr	r1, [r5]
+ 335 00e6 2068     		ldr	r0, [r4]
+ 336 00e8 FFF7FEFF 		bl	mise_a_jour_x_y
+ARM GAS  /tmp/ccgJWgAv.s 			page 12
+
+
+ 337              	.LVL25:
+ 338 00ec BAE7     		b	.L6
+ 339              	.L9:
+ 340 00ee 00BF     		.align	2
+ 341              	.L8:
+ 342 00f0 00000000 		.word	htim3
+ 343 00f4 00000000 		.word	htim5
+ 344 00f8 00000000 		.word	htim2
+ 345 00fc 00000000 		.word	px
+ 346 0100 00000000 		.word	py
+ 347 0104 00000000 		.word	pconsigne_droite
+ 348 0108 00000000 		.word	pconsigne_gauche
+ 349 010c 00000000 		.word	.LC0
+ 350 0110 00000000 		.word	ptheta
+ 351 0114 00000000 		.word	distance_encoder
+ 352 0118 00000000 		.word	cnt_gauche
+ 353 011c 00000000 		.word	cnt_droite
+ 354 0120 00000000 		.word	pdistanceparcourue_droite
+ 355 0124 00000000 		.word	moy_prev
+ 356 0128 00000000 		.word	pdistanceparcourue_gauche
+ 357              		.cfi_endproc
+ 358              	.LFE126:
+ 360              		.section	.text.Error_Handler,"ax",%progbits
+ 361              		.align	1
+ 362              		.global	Error_Handler
+ 363              		.syntax unified
+ 364              		.thumb
+ 365              		.thumb_func
+ 366              		.fpu fpv4-sp-d16
+ 368              	Error_Handler:
+ 369              	.LFB128:
+ 261:Src/main.c    **** 
+ 262:Src/main.c    **** /* USER CODE BEGIN 4 */
+ 263:Src/main.c    **** 
+ 264:Src/main.c    **** /* USER CODE END 4 */
+ 265:Src/main.c    **** 
+ 266:Src/main.c    **** /**
+ 267:Src/main.c    ****   * @brief  This function is executed in case of error occurrence.
+ 268:Src/main.c    ****   * @retval None
+ 269:Src/main.c    ****   */
+ 270:Src/main.c    ****   
+ 271:Src/main.c    **** void Error_Handler(void)
+ 272:Src/main.c    **** {
+ 370              		.loc 1 272 1 view -0
+ 371              		.cfi_startproc
+ 372              		@ args = 0, pretend = 0, frame = 0
+ 373              		@ frame_needed = 0, uses_anonymous_args = 0
+ 374              		@ link register save eliminated.
+ 273:Src/main.c    ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 274:Src/main.c    ****   /* User can add his own implementation to report the HAL error return state */
+ 275:Src/main.c    **** 
+ 276:Src/main.c    ****   /* USER CODE END Error_Handler_Debug */
+ 277:Src/main.c    **** }
+ 375              		.loc 1 277 1 view .LVU82
+ 376 0000 7047     		bx	lr
+ 377              		.cfi_endproc
+ 378              	.LFE128:
+ARM GAS  /tmp/ccgJWgAv.s 			page 13
+
+
+ 380              		.comm	epsilon,4,4
+ 381              		.comm	nbpoint,4,4
+ 382              		.comm	cap,4,4
+ 383              		.comm	pconsigne_droite,4,4
+ 384              		.comm	pconsigne_gauche,4,4
+ 385              		.comm	moy_prev,4,4
+ 386              		.comm	py,4,4
+ 387              		.comm	px,4,4
+ 388              		.comm	pdistanceparcourue_gauche,4,4
+ 389              		.comm	pdistanceparcourue_droite,4,4
+ 390              		.comm	cnt_gauche,4,4
+ 391              		.comm	cnt_droite,4,4
+ 392              		.comm	objectif_y,4,4
+ 393              		.comm	objectif_x,4,4
+ 394              		.comm	distance_encoder,4,4
+ 395              		.comm	ptheta,4,4
+ 396              		.text
+ 397              	.Letext0:
+ 398              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 399              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 400              		.file 4 "Drivers/CMSIS/Include/core_cm4.h"
+ 401              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 402              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h"
+ 403              		.file 7 "/usr/arm-none-eabi/include/sys/lock.h"
+ 404              		.file 8 "/usr/arm-none-eabi/include/sys/_types.h"
+ 405              		.file 9 "/usr/lib/gcc/arm-none-eabi/9.1.0/include/stddef.h"
+ 406              		.file 10 "/usr/arm-none-eabi/include/sys/reent.h"
+ 407              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 408              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
+ 409              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h"
+ 410              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 411              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 412              		.file 16 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_usart.h"
+ 413              		.file 17 "Inc/tim.h"
+ 414              		.file 18 "Inc/usart.h"
+ 415              		.file 19 "Inc/encoder.h"
+ 416              		.file 20 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 417              		.file 21 "Inc/gpio.h"
+ 418              		.file 22 "/usr/arm-none-eabi/include/stdio.h"
+ 419              		.file 23 "<built-in>"
+ARM GAS  /tmp/ccgJWgAv.s 			page 14
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccgJWgAv.s:18     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccgJWgAv.s:26     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccgJWgAv.s:160    .text.SystemClock_Config:000000000000008c $d
+     /tmp/ccgJWgAv.s:166    .rodata.main.str1.4:0000000000000000 $d
+     /tmp/ccgJWgAv.s:170    .text.main:0000000000000000 $t
+     /tmp/ccgJWgAv.s:177    .text.main:0000000000000000 main
+     /tmp/ccgJWgAv.s:342    .text.main:00000000000000f0 $d
+                            *COM*:0000000000000004 px
+                            *COM*:0000000000000004 py
+                            *COM*:0000000000000004 pconsigne_droite
+                            *COM*:0000000000000004 pconsigne_gauche
+                            *COM*:0000000000000004 ptheta
+                            *COM*:0000000000000004 distance_encoder
+                            *COM*:0000000000000004 cnt_gauche
+                            *COM*:0000000000000004 cnt_droite
+                            *COM*:0000000000000004 pdistanceparcourue_droite
+                            *COM*:0000000000000004 moy_prev
+                            *COM*:0000000000000004 pdistanceparcourue_gauche
+     /tmp/ccgJWgAv.s:361    .text.Error_Handler:0000000000000000 $t
+     /tmp/ccgJWgAv.s:368    .text.Error_Handler:0000000000000000 Error_Handler
+                            *COM*:0000000000000004 epsilon
+                            *COM*:0000000000000004 nbpoint
+                            *COM*:0000000000000004 cap
+                            *COM*:0000000000000004 objectif_y
+                            *COM*:0000000000000004 objectif_x
+
+UNDEFINED SYMBOLS
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_Init
+MX_GPIO_Init
+MX_TIM3_Init
+MX_TIM2_Init
+MX_USART2_Init
+MX_TIM5_Init
+HAL_TIM_Base_Start
+HAL_TIM_Base_Start_IT
+HAL_TIM_PWM_Start
+consigne
+commande_moteur
+printf
+theta
+mise_a_jour_distance
+mise_a_jour_x_y
+htim3
+htim5
+htim2
