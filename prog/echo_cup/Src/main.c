@@ -47,7 +47,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile long count;
 volatile int input_capture;
 /* USER CODE END PV */
 
@@ -108,18 +107,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int count;
   while (1)
   {
-    //envoie signal trigger
-    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_7);
-    HAL_Delay(0.1);
-    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_7);
-
-
-    count = __HAL_TIM_GetCounter(&htim1);
-    //input_capture = __HAL_TIM_GetCompare(&htim1,TIM_CHANNEL_1);
-    HAL_Delay(100);
-
+	count = detectionUS();
+	
     n=sprintf (buffer, "\033[J\rcount: %ld et capture: %d\n", count, input_capture);
     HAL_UART_Transmit(&huart2,buffer,n,0xFFF);
     /* USER CODE END WHILE */
