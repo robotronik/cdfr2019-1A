@@ -87,11 +87,16 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
 {
+
   // FIXME : htim 10 is maybe not optimal
-  if(htim->Instance == htim10.Instance){      
+  if(htim->Instance == TIM10){      
     update_odometry(&odometry);
   }
-  else if (htim->Instance==TIM1)
+}
+
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
+{
+ if (htim->Instance==TIM1)
   {
     input_capture= __HAL_TIM_GetCounter(htim);    //read TIM2 channel 1 capture value
     __HAL_TIM_SetCounter(htim, 0);    //reset counter after input capture interrupt occurs
@@ -105,7 +110,7 @@ int detectionUS(){
     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_11);
 
 
-    int count = input_capture; //__HAL_TIM_GetCounter(&htim1); //unite cm
+    int count = __HAL_TIM_GetCounter(&htim1); //unite cm
     //input_capture = __HAL_TIM_GetCompare(&htim1,TIM_CHANNEL_1);
     HAL_Delay(100);//TEMPS DE CYCLE A DEFINIR
 	
@@ -197,7 +202,7 @@ int main(void)
   pid_init(&pid_sum,&pid_conf_sum);
   pid_init(&pid_diff,&pid_conf_diff);
 
-  int count;
+  long int count;
   while (1)
   {
     count = detectionUS();

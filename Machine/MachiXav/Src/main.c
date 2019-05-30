@@ -47,7 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile int input_capture;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -58,28 +58,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
- if (htim->Instance==TIM1)
-  {
-    input_capture= __HAL_TIM_GetCounter(htim);    //read TIM2 channel 1 capture value
-    __HAL_TIM_SetCounter(htim, 0);    //reset counter after input capture interrupt occurs
-  }
-}
 
-int detectionUS(){
-	//envoie signal trigger avant
-    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_11);
-    HAL_Delay(0.1);
-    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_11);
-
-
-    int count = input_capture; //__HAL_TIM_GetCounter(&htim1); //unite cm
-    //input_capture = __HAL_TIM_GetCompare(&htim1,TIM_CHANNEL_1);
-    HAL_Delay(100);
-	
-	return count;
-}
 /* USER CODE END 0 */
 
 /**
@@ -89,8 +68,6 @@ int detectionUS(){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  char buffer[50];
-  int n;
 
   /* USER CODE END 1 */
   
@@ -115,20 +92,18 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM1_Init();
   MX_USART2_UART_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_TIM5_Init();
+  MX_TIM10_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_IC_Start_IT(&htim1,TIM_CHANNEL_1);
-  //HAL_TIM_IC_Start_IT(&htim1,TIM_CHANNEL_3);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  long int count;
   while (1)
   {
-	count = detectionUS();
-	
-    n=sprintf (buffer, "\033[J\rcount: %ld et capture: %d\n", count, input_capture);
-    HAL_UART_Transmit(&huart2,buffer,n,0xFFF);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -154,7 +129,12 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 16;
+  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -163,12 +143,12 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
