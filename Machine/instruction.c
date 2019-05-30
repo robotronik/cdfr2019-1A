@@ -1,4 +1,4 @@
- PID_Configuration pid_conf_sum = {.Kp = 10,
+/* PID_Configuration pid_conf_sum = {.Kp = 10,
   .Ki = 0,
   .Kd = 0,
   
@@ -25,8 +25,10 @@
 void init(){
 	pid_init(&pid_sum,&pid_conf_sum);
 	pid_init(&pid_diff,&pid_conf_diff);
-}
+}*/
  
+#include "instruction.h"
+
 void getOdometry(double* sum, double* diff){
 	*sum = odometry.x;
 	*diff = odometry.theta;

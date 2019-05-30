@@ -1,6 +1,6 @@
 BOARD=f4
-PROJECT_DIR=echo_cup
-PROJECT_NAME=echo_cup
+PROJECT_DIR=MachiXav
+PROJECT_NAME=MachiXav
 DOC_DIR= /home/$(USER)/Documents/STM/
 
 rouge = \033[0;31m
