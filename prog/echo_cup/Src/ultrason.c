@@ -1,5 +1,7 @@
+#include "ultrason.h"
+
 int detectionUS(){
-	//envoie signal trigger
+	//envoie signal trigger avant
     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_7);
     HAL_Delay(0.1);
     HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_7);

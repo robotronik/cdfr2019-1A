@@ -23,6 +23,7 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
+#include "ultrason.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -66,6 +67,20 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
     __HAL_TIM_SetCounter(htim, 0);    //reset counter after input capture interrupt occurs
   }
 }
+
+int detectionUS(){
+	//envoie signal trigger avant
+    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_11);
+    HAL_Delay(0.1);
+    HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_11);
+
+
+    int count = input_capture; //__HAL_TIM_GetCounter(&htim1); //unite cm
+    //input_capture = __HAL_TIM_GetCompare(&htim1,TIM_CHANNEL_1);
+    HAL_Delay(100);
+	
+	return count;
+}
 /* USER CODE END 0 */
 
 /**
@@ -103,11 +118,12 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_IC_Start_IT(&htim1,TIM_CHANNEL_1);
+  //HAL_TIM_IC_Start_IT(&htim1,TIM_CHANNEL_3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int count;
+  long int count;
   while (1)
   {
 	count = detectionUS();
